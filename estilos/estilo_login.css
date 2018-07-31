@@ -1,0 +1,109 @@
+ #footer {
+	/*position : absolute;*/
+	bottom : 0;
+	/*height : 40px;
+	margin-top : 40px;*/
+	text-align:center;
+	width:100%;
+	/*display: none;*/
+  }
+
+
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #FFF;
+	height:100%;
+}
+-->
+
+#form1{height:100%;}
+
+#content_input{
+	vertical-align: middle;
+	text-align: center;
+	display: inline-block;
+	/*margin: 0px auto;*/
+	top:50%;
+	/*height:490px;*/
+	/*margin-top:-245px;*/
+	position:relative;
+}
+
+html{font-size: 0px;}
+#wrap,form,html{
+	width:100%;
+	margin:0px;
+	padding:0px;
+	height:100%;
+	text-align:center;
+}
+
+
+
+#content_input input[type='text'],#content_input input[type='password']{
+	border: 1px solid #DADADA;
+    color: #888;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 100%;
+    font-size: 12px;
+    line-height:15px;
+    box-sizing: border-box;;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+
+#content_input input[type=button]{
+	float:right;
+	position: relative;
+	display: inline-block;
+	overflow: visible;
+	margin: 8px 0px 0px;
+	padding: 10px 14px;
+	cursor: pointer;
+	outline: 0px none;
+	border: 0px none;
+	background-color: #EEE;
+	background-image: -moz-linear-gradient(center top , #EEE, #EEE);
+	background-repeat: repeat-x;
+	z-index: 1;
+	font-family: "Segoe UI",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 14px;
+	color: #333;
+	min-width: 42px;
+	text-shadow: 0px 1px 0px #FFF;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	vertical-align: inherit;
+}
+
+
+#content_input label{
+	display:none;
+	
+}
+
+::-webkit-input-placeholder {  font-weight: bold; } /* WebKit */
+:-moz-placeholder {   font-weight: bold;} /* Firefox 18- */
+::-moz-placeholder { font-weight: bold; } /* Firefox 19+ */
+:-ms-input-placeholder {  font-weight: bold; } /* IE 10+ */
+
+
+#logo_cliente{
+	/*display:none;*/
+}
+
+figure img{
+	width: 50%;
+}

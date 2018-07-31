@@ -1,0 +1,10 @@
+RewriteBase /deck
+Options +FollowSymlinks
+RewriteEngine on
+
+# evita los directorios
+RewriteCond %{SCRIPT_FILENAME} !-d  
+# evita los archivos
+RewriteCond %{SCRIPT_FILENAME} !-f  
+
+RewriteRule ^panel/privado/?$ php/private/controller.php?prv_cod_navegacion=1000 [NC,L]

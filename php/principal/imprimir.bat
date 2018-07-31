@@ -1,0 +1,1 @@
+type imprimir_ticket.txt > lpt1

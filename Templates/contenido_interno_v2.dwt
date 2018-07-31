@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">-->
+<link href="../estilos/multiselect.css" rel="stylesheet" type="text/css" />
+<link href="../estilos/hover_master.css" rel="stylesheet" type="text/css" />
+<link href="../estilos/estilo_tabla.css" rel="stylesheet" type="text/css" />
+<link href="../estilos/buttons.css" rel="stylesheet" type="text/css" />
+<link href="../estilos/jquery-ui.css" rel="stylesheet" type="text/css"  />
+<link href="../estilos/select2.css" rel="stylesheet" type="text/css" />
+<link href="../estilos/timepicker.css" rel="stylesheet" type="text/css" />
+<link href="../estilos/estilo_general.css" rel="stylesheet" type="text/css" />
+<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<!--<script src="../js/modernizr-2.0.6.js" ></script>-->
+<!--<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">-->
+<!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
+<!--<script src="../js/jquery-1.9.1.js"></script>-->
+<script src="../js/jquery-1.11.2.min.js"></script>
+<!--<script src="../js/jquery.ui.core.js"></script>-->
+<!--<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
+<script src="../js/jquery-ui.js" ></script>
+<script src="../js/jquery.simplemodal.js" ></script>
+<script src="../js/timepicker.js"></script>
+<script src="../js/select2.js" ></script>
+<script src="../js/jquery_multiselect.js" ></script>
+<script src="../js/ajax_navegacion.js" ></script>
+<script src="../js/jquery.serializefullarray.js" ></script>
+<script src="../js/js_general.js"></script>
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>Scistem</title>
+<!-- TemplateEndEditable -->
+<meta http-equiv="Expires" content="0" /> 
+<!--<meta http-equiv="Pragma" content="no-cache" />-->
+<script type="text/javascript">
+if(history.forward(1)){location.replace( history.forward(1) );}
+</script>
+<style>
+.td_header span{
+	color:#fff;
+}
+
+.td_header{color:#fff;}
+
+#btn_opciones{
+	color: #fff;
+	display: inline-block;
+	height: 100%;
+	background-color:#00F;
+}
+
+#nav_principal{
+	display:inline-block; 
+	width:100%;	
+	background:rgba(0,0,0,.5);
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#nav_principal ul{
+	font-size:0;
+	padding:0;
+	display:inline;
+
+}
+
+#nav_principal ul li{
+
+	display: inline-block;
+	font-size:16px;
+	height:100%;
+	/*line-height:120px;*/
+	padding:10px 10px;
+	vertical-align: top;
+	width:auto;
+
+}
+nav ul li:hover{
+	background:rgba(0,0,0,.6);
+}
+
+nav ul li a{
+	color: #DDD;
+	display: block;
+	font-weight:bold;
+	text-align:center;
+	text-transform:uppercase;
+	text-decoration:none;
+}
+
+#btn_opc_user{
+	position:absolute;
+	top:0;
+	right:0;
+	
+}
+
+#nom_system{
+	letter-spacing:5px;
+	
+}
+
+
+</style>
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+</head>
+
+<body >
+	<div id="ventana_general"></div>
+		<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data"> 
+	 		<div id="apDiv1" > 
+            
+			    <table width="100%" height="100%"  border="0" align="center"  cellpadding="0" cellspacing="0" class="tabla_principal">
+                
+                <tr>
+                    <td valign="top" class="td_header" >
+	                    <?php if($cod_navegacion != 36 && $ind_pantalla_menu == FALSE){  ?>            
+                    	
+                    	<nav id="nav_principal">
+                        	<ul>
+                            	<li onclick="navegar(36);" style="cursor:pointer; padding:0px;"	>
+                                	<div style="margin: 1em 0;  
+    height: 35px;
+    width: 160px;
+    border: 1px solid red;
+    position: relative;">
+    	                                <img src="../imagenes/sistema/logo_deck_small_2.png"   height="20" style="max-height: 25px;  
+    max-width: 160px;  
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;  
+    background: #3A6F9A; " />
+	                                    <?/*<span id="nom_system">DECK</span>*/?>
+                                    </div>
+                                </li>
+                            
+                            	<? 	while($row = $db->sacar_registro($cursor_permisos_template)){ 
+                            
+                                        $cod_modulo 	= $row['cod_tabla'];
+                                        $txt_modulo		= $row['txt_tabla'];			
+                                 
+                                  if($cod_modulo==15) { ?>
+                                       <li>
+                                            <a href="javascript:f_ver_consultar_maetro_detalle(15,16)"><?=$txt_modulo?></a>
+                                        </li>
+                                  <? } ?>
+                                         
+                                  <? if($cod_modulo==18) { ?>
+                                    <!--   <td>
+                                       <a href="javascript:f_ver_consultar_tabla(18)">
+                                       <img class="float" src="../imagenes/sistema/b3.png" width="55"  border="0" /></a>
+                                       
+                                
+                                       <img class="img_menu" src="../imagenes/sistema/b3.png" width="55" title="Modulo fuera de servicio" border="0" />
+                                       </td> -->
+                                  <? } ?>
+                                
+                                  <? if($cod_modulo==19) { ?>
+                                        <li><a href="javascript:f_ver_consultar_tabla(19)"><?=$txt_modulo?></a></li>
+                                  <? } ?>
+                                        
+                                <? if($cod_modulo==20) { ?>
+                                       <li><a href="javascript:f_ver_consultar_maetro_detalle(20,23)"><?=$txt_modulo?></a></li>
+                                <? } ?>
+                                        
+                                <? if($cod_modulo==13) { ?>
+                                     <li><a href="javascript:f_ver_consultar_tabla(13)"><?=$txt_modulo?></a></li>
+                                <? } ?>
+                                        
+                                 <? if($cod_modulo==21) { ?>
+                                      <li><a href="javascript:f_ver_consultar_tabla(21)"><?=$txt_modulo?></a></li>
+                                  <? } ?>
+                                  
+                                  <?  // compras
+                                        if($cod_modulo==28) { ?>
+                                        <li>
+                                            <a href="javascript:f_ver_consultar_maetro_detalle(28,29);"><?=$txt_modulo?></a>
+                                        </li>
+                                    <? } ?>
+                                        
+                                        
+                                          
+                                 <? }  ?>  
+                                                
+                                    
+                                    <? if($cod_perfil == 1) { ?>
+                                        <li><a href="javascript:void()" onclick="navegar(1062);" >AJUSTES</a></li>
+                                        <li><a href="javascript:void()" onclick="navegar(200);" >ANEXOS</a></li>
+                                    <? } ?>                         
+                                          
+                                            
+                                 <? } ?>      
+                            </ul>
+                            
+                            <?php if($cod_usuario && 1==1){ ?>
+                                <div id="btn_opc_user">
+                                    <span>Hola,</span> 
+                                    <span id="btn_opciones">
+                                        <? $txt_login = $_SESSION['nom_user'];  echo $txt_login;  ?>                                        
+                                    </span>
+                                </div>
+                            <? } ?>
+                            
+                        </nav>
+                    	
+                    
+                   	  
+                    
+                    </td>
+                  </tr>
+  
+                 <tr>
+                    <td align="center" valign="top"  class="td_contenido" >
+
+					<!-- TemplateBeginEditable name="EditRegion3" -->contenido<!-- TemplateEndEditable -->
+                       
+                        
+                         <!-- modal content -->
+                    <div id='click_confirm'></div>
+                        <div id='confirm'>
+                            <div class='header'><span>Mensaje de confirmacion</span></div>
+                            <div class='message'></div>
+                            <div class='buttons'>
+                                <div class='no simplemodal-close'>No</div><div class='yes'>Si</div>
+                            </div>
+                        </div>
+                       
+                    <input type="hidden" 					name="cod_usuario" value="<?=$cod_usuario?>" />
+                    <input name="cod_navegacion" 			type="hidden" id="cod_navegacion"  />
+					<input name="cod_navegacion_anterior" 	type="hidden" id="cod_navegacion_anterior" value="<?=$cod_navegacion?>" />
+                    <input type="hidden" 					name="ind_limpiar_variables" />
+                    <input name="cod_tabla" 				type="hidden"	value="<?=$cod_tabla?>" />
+                    <input name="cod_tabla_detalle"			value="<?=$cod_tabla_detalle?>" type="hidden" />
+                    <input name="ind_cierre_sesion"			type="hidden" />
+      
+       </td>
+      </tr>
+  
+      <tr>
+        <td align="center"  valign="bottom"  class="td_footer"  >
+        	<div>Sistema de informacion desarrollado por Luis Prieto para Comestibles Elsa | Todos los derechos reservados © 2015</div>
+            
+         </td>
+      </tr>
+      
+      
+   </table>
+ </div>
+</form>
+<script>
+
+window.onload=function(){
+	var pos=window.name || 0;
+	window.scrollTo(0,pos);
+}
+window.onunload=function(){
+	window.name=self.pageYOffset || (document.documentElement.scrollTop+document.body.scrollTop);
+}
+
+/*function  evalua_tecla_body(cuerpo ,evento){
+	var tecla_presionada= (window.event) ? evento.which : evento.keyCode; //captura la tecla que fue precionada
+	
+	if(tecla_presionada== 13 ){
+		f_enter();
+	}
+	else if(tecla_presionada== 27 ){
+		f_esc();
+	}
+}*/
+
+function f_navegar_menu(cod_navegacion,cod_tabla,cod_tabla_detalle){
+	f=document.form1;
+	f.cod_tabla.value			=	cod_tabla;
+	f.cod_tabla_detalle.value	=	cod_tabla_detalle;	
+	navegar_limpiando_variables(cod_navegacion);
+}
+</script>
+
+
+</body>
+</html>
