@@ -108,8 +108,8 @@ class columna_tabla_autonoma{
 		$avancedFiltersHtml = $this->getHtmlInputsClasified($arrAvancedFilters);
 
 		
-
-		$html='
+		// version filtros avanzados===>>>
+		/*$html='
 			<div>
 				<ul class="nav nav-tabs">
 			    	<li class="active"><a data-toggle="tab" href="#basico">Basico</a></li>
@@ -129,7 +129,24 @@ class columna_tabla_autonoma{
 				    </div>
 				    
 			  </div>
-			</div>';
+			</div>';*/
+
+
+			$html='
+				<div>
+					<ul class="nav nav-tabs">
+			    	<li class="active"><a data-toggle="tab" href="#basico">Basico</a></li>
+			    </ul>
+
+
+			  	<div class="tab-content">
+				    <div id="basico" class="tab-pane fade in active">
+				    	<h3>Filtros Basicos</h3>
+				      	'.$basicFiltersHtml.'
+				    </div>
+					</div>
+
+				</div>';
 
 
 
@@ -255,21 +272,20 @@ class columna_tabla_autonoma{
 		select 		* 
 		from 		columna_tabla_autonoma
 		where		cod_columna_tabla	= 	$cod_columna_tabla		";
-
+		
 		$row_info_columna		= $db->consultar_registro($query);
 		$txt_nombre_columna		= $row_info_columna['txt_nombre'];
 		//== busca el quiery que trae el nombre >>>
-	  	$query		= $row_info_columna['txt_script_lista_valor']; 
+	  $query		= $row_info_columna['txt_script_lista_valor']; 
 
 		
 		if($query == NULL)return false;
 		
 		// cuando la consulta tiene like
 		$query		= str_replace("'%value_columna%'","'%$val_campo%'",$query);
-
-		$query		= str_replace("value_columna","'$val_campo'",$query);
-
+		$query		= str_replace("value_columna",$val_campo,$query);
 		$cursor	= $db->consultar($query);
+		
 		// devuelve siempre la segunda posicion del vector
 		return 	$cursor;
 	}
@@ -968,7 +984,7 @@ class columna_tabla_autonoma{
 				//onBlur				='ver_valor_onblur(this);return false;' 
 				
 				$row_imput['input']	= 
-				"<div id=\"box_input_".$txt_nombre_columna."\">
+				"<div id=\"box_input_".$txt_nombre_columna."\" >
 					<input type				='hidden' 
 							class				='' 
 							$required
@@ -987,7 +1003,7 @@ class columna_tabla_autonoma{
 								class				='form-control ' 
 								name				='txt_".$txt_nombre_columna."' 
 								id					='txt_".$txt_nombre_columna."' 
-								type				='text' 
+								type				='search' 
 								value				='txt_value_columna' 
 								data-cod_columna 	= '".$row_info_columna['cod_columna_tabla']."' 
 								data-input_padre	= '".$txt_nombre_columna."'
@@ -998,6 +1014,9 @@ class columna_tabla_autonoma{
 								required
 
 							/>
+
+							<div class='btnClearInput' id='btnClear_".$txt_nombre_columna."'>X</div>
+							
 						
 							<span class=\"input-group-btn\">
 								<button 
@@ -1014,15 +1033,27 @@ class columna_tabla_autonoma{
 						
 						<script>
 
-							var timeout;
+							/*var timeout;
 							var searchFieldValue = (this_,e) =>{
 							    if(timeout) { clearTimeout(timeout); }
 							    timeout = setTimeout(() => {
 							    	ver_valor_script_columna(_this,e);									
 							    }, 600);
-							}
+							}*/
 
 							$(function(){
+								let txtInput = $(\"input[name='txt_".$txt_nombre_columna."']\");
+								if($(txtInput).val()){
+									$(txtInput).attr('readonly',true);
+								}
+
+								$('#btnClear_".$txt_nombre_columna."').on('click',function(e){
+									e.preventDefault();
+									$(\"input[name='".$txt_nombre_columna."']\").val('');
+									$(txtInput).val('');
+									$(txtInput).attr('readonly',false);
+									return false;
+								});
 
 								$('#txt_".$txt_nombre_columna."').on('keydown',function(e){
 									var keyCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
@@ -1922,6 +1953,8 @@ class columna_tabla_autonoma{
 			$txt_nombre_columna						= $row_info_columna['txt_nombre'];
 			$cod_tipo_dato_columna					= $row_info_columna['cod_tipo_dato_columna'];
 			$value									= $val_post[$txt_name_imput];
+
+			echo $txt_nombre_columna." === ".$cod_tipo_dato_columna." /// ";
 			
 			
 			if( $row_info_columna['ind_pk']==1 && $val_post['reg_seleccionado'] && $cant_pk==0){
@@ -1946,18 +1979,21 @@ class columna_tabla_autonoma{
 
 			//== si una LISTA DE VALOR actualiza el campo de texto>>>
 			if($row_info_columna['cod_tipo_dato_columna']==7 ){
+				$val_tmp_txt = $val_post["txt_".$txt_name_imput];
+				
 				//== busca el quiery que trae el nombre >>>
 				if($value){
-
 					$query		= $row_info_columna['txt_script_lista_valor']; 
 					$query		= str_replace("'%value_columna%'","'%$value%'",$query);
-					$query		= str_replace("value_columna","'$value'",$query);
-
+					$query		= str_replace("value_columna","$value",$query);
+					
 					/*$query		= str_replace("like '%'","like '%",$query);
 					$query		= str_replace("'%'","%'",$query);*/
 					$row_nmbre	= $db->consultar_registro($query);
 				
-					$info_nmbre	= $row_nmbre['txt_nombre']; 
+					//$info_nmbre	= $row_nmbre['txt_nombre']; 
+					$info_nmbre = $val_post["txt_".$txt_name_imput];
+
 		
 					
 				}else $info_nmbre = NULL;
@@ -1968,6 +2004,12 @@ class columna_tabla_autonoma{
 				$row_imputs[$txt_nombre_columna]['input']=
 				str_replace("txt_value_columna",$info_nmbre,$row_imputs[$txt_nombre_columna]['input']);
 
+			}
+
+			// fetch autocomplete  ==>
+			if($row_info_columna['cod_tipo_dato_columna']== 19 ){
+				//echo $txt_name_imput;
+				//print_r($_REQUEST);
 			}
 
 			//== Evalua el tipo DATE para tener fecha inicial y final >>>
@@ -2873,6 +2915,7 @@ class columna_tabla_autonoma{
 	){
 		global $db;
 		$sis_genericos 		= new sis_genericos;
+		$proceso_adicional_pantalla		= new proceso_adicional_pantalla;
 		$cursor_datos		= $resultado_cursor['DATOS'];
 		$total_registros 	= $resultado_cursor['NUM_REGISTROS'];
 		
@@ -2881,6 +2924,22 @@ class columna_tabla_autonoma{
 			$tabla = '<div id="msj_no_row"><p>No se encontro ningun registro</p></div>';
 			
 		}else{
+
+			$cod_perfil = $GLOBALS['cod_perfil'];
+			$listProcess = [];
+			
+			// == procesos adicionales ===>>>
+			$cursor_procesos_adicionales	= $proceso_adicional_pantalla->f_get_procesos_asociados($cod_tabla, 78,NULL,$cod_perfil);
+			//$num_registros 	= 	$db->num_registros($cursor_procesos_adicionales);
+			while($process = $db->sacar_registro($cursor_procesos_adicionales)){ 
+				array_push($listProcess, $process);
+			}
+
+			
+
+			
+
+
 			// indica que al final del reporte no hay sumatorias (si hay variables tipo Numeric con formato cambia a true)
 			$ind_sumatoria	= false; 
 			$row_sumatoria	= array();
@@ -2918,7 +2977,12 @@ class columna_tabla_autonoma{
 			}
 	
 			// Genera el titulo de la tabla >>>	
-			$titulo_tabla	=	"<tr class='titulo_tabla'><th><input type='checkbox' name='check_all' onclick='f_seleccionar_todos(this)'/></th>";
+			$titulo_tabla	=	"<tr class='titulo_tabla'>
+													<th>
+														<input type='checkbox' name='check_all' onclick='f_seleccionar_todos(this)'/>
+													</th>
+													<th>&nbsp;</th>
+													";
 			for($i=0; $i<$num_columnas; $i++){
 	
 				$nom_columna	= $db->nom_columna($cursor_datos,$i);
@@ -3009,20 +3073,19 @@ class columna_tabla_autonoma{
 				
 				
 				$txt_datos_tabla .=  "
-					  <tr  style='display:none ' id='tr_menu_reg_$row_dato[0]' class='tr_procesos' >
-						<td colspan='".($num_columnas+1)."'>
-							<div id='div_reg_$row_dato[0]'></div>
-						</td>
-					</tr>
+					 
 			
 			
 			
-					<tr  id='tr_reg_$row_dato[0]' class='$class_datos_tabla ".$class." ' data-color='".$row_dato['privado_color']."'    
-					style=' ".$style." background-color:".$row_dato['privado_color']."' 
-					onmouseover='f_color_fila(this,1)' 
-					onmouseout='f_color_fila(this,2)' 
-					onclick='f_color_fila(this,3)'>";
-				
+						<tr  id='tr_reg_$row_dato[0]' 
+								class='$class_datos_tabla ".$class." elementRowData' 
+								data-color='".$row_dato['privado_color']."'    
+								style=' ".$style." 
+								background-color:".$row_dato['privado_color']."' 
+								onmouseover='f_color_fila(this,1)' 
+								onmouseout='f_color_fila(this,2)' 
+								>";
+					
 				for($j=0; $j<$num_columnas; $j++){
 					$nom_columna		= 	$db->nom_columna($cursor_datos,$j);
 					$row_info_columna	= 	$array_info_columna[$nom_columna];
@@ -3065,18 +3128,42 @@ class columna_tabla_autonoma{
 						if($row_info_columna['ind_pk'] == 1){
 							$tmp_pk	=	$value;// para que sea usado en un hipervinculo tambien en la columna siguiente
 	//						$value	= "<a href='javascript:ver_menu_registro($value)' class='link_display' >$value</a>";
-							$value	= "<a href='javascript:ver_menu_registro($value)' >$value</a>";
-							$width_pk=" width='1%'  onclick='javascript:f_ver_menu_registro($tmp_pk)'";
+							$value	= "<a href='javascript:ver_registro($value);' class='btn btn-link' ><u>$value</u></a>";
+							$width_pk=" width='1%' ";
 							//=== Añade radio buton para manipular el registro >>>
 							$txt_datos_tabla .= "<td align='center'><input type='checkbox' name='reg_seleccionado[]' value='$tmp_pk' /></td>";
+							$txt_datos_tabla .= '<td align="center" >
+																			<div class="btn btn-info btn-xs btnSubProcess" data-row="'.$i.'">
+																				<i class="fa fa-arrow-down" aria-hidden="true"></i>
+																			</div>
+																		</td>';
 						}
 						//=== Evalua el enlace con el PK en la siguiente columna >>>				
 	//					if($j==1) $value	= "<a href='javascript:f_ver_menu_registro($tmp_pk)' class='link_display'>$value</a>";
-						if($j==1) $value	= "<a href='javascript:f_ver_menu_registro($tmp_pk)' >$value</a>";
+						if($j==1) $value	= "<a href='javascript:ver_registro($tmp_pk);'  class='btn btn-link' ><u>$value</u></a>";
 						$txt_datos_tabla .=  "<td $width_pk  align='$align' class='contenido'  $nowrap>$value</td>";
 					}
 				}
 				$txt_datos_tabla .=  "</tr>";
+				$txt_datos_tabla .=  '<tr class="subProcessRow" id="subProcessRow_'.$i.'">
+																<td> &nbsp;</td>
+																<td colspan="'.$num_columnas.'" class="bg-success">
+																	<div class="boxSubProcess">';
+												
+				$numExtraProcess 	= 	$db->num_registros($cursor_procesos_adicionales);
+				for($p=0; $p<count($listProcess); $p++){
+						$row 									= $listProcess[$p];
+						$txt_desc							=$row['txt_descripcion'];
+						if($txt_desc)$attrib 	="title='$txt_desc'";
+						$txt_nombre						=$row['txt_nombre'];
+						$txt_js								=$row['txt_js'];
+
+						$txt_datos_tabla .= '<button class="btn btn-primary btn-xs col-xs-12 col-sm-2" style="margin:2px;" onClick="javascript:'.$txt_js.'"  '.$attrib.' > '.$txt_nombre.'</button>';
+
+				}
+				
+				$txt_datos_tabla .= '<div></td></tr>';
+
 			}
 			//=== Evalua si debe mosrar al final alguna sumatoria >>>
 			if($ind_sumatoria){
@@ -3177,16 +3264,13 @@ class columna_tabla_autonoma{
 							
 							// evento que se activa al utilizar el scroll				
 							$(window).scroll(function(){
-								
-								//console.log('aqui');
-								
-								var thead = $('#thead');
-								var pos_thead = thead.position().top;
+								var thead = $('.tabla_reporte');
+								var pos_thead = thead.offset();
 								
 								// posicion actual del scroll	
 								var pos_scroll = $(this).scrollTop();
 								
-								if(pos_scroll > pos_thead){
+								if(pos_scroll > pos_thead.top){
 									
 									// elimina cualquier clon para agregarlo
 									$('.clon_thead').remove();
@@ -3202,7 +3286,7 @@ class columna_tabla_autonoma{
 									
 									// añadimos propiedades css al elemento clon
 									//$(clon_thead).css({'left':'50%','margin-left':margin_l});						
-									$(clon_thead).css({'left':$(padre_clon).position().left});						
+									$(clon_thead).css({'left':$(padre_clon).offset().left});						
 									
 									//console.log(w_clon);
 									

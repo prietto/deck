@@ -103,8 +103,8 @@
                         if(in_array($codModule, $arrayModules)){ ?>
                             <li class="<?=$active?> row">
                                 <div class="form-inline">
-                                    <a href="#" class="col-md-12">
-                                        <div class="col-md-3" onclick="goToModule(<?=$codModule?>,<?=$detailModule?>);">
+                                    <a href="#" class="col-md-12" onclick="goToModule(<?=$codModule?>,<?=$detailModule?>);">
+                                        <div class="col-md-3" >
                                             <i class="fas <?=$iconModule?> fa-2x"></i> 
                                         </div>
                                         <div class="col-md-9">
@@ -128,7 +128,7 @@
             </nav>
 
             <!-- Page Content Holder -->
-            <div id="content" class="form-control">
+            <div id="content" class="">
 
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">

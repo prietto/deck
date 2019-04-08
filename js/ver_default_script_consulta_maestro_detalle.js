@@ -6,25 +6,28 @@ PARAMETRO		DESCRIPCION
 fila			todo el objeto de la fila
 num_accion		1=over 2=out 3=click
 ===========================================================================*/
-function f_color_fila(fila,num_accion){
+
+const f_color_fila = (fila,num_accion,event) =>{
+	
 
 	var color_original = $(fila).data('color');
 	
 	if(num_accion==3) {
 		if($(fila).hasClass("fila_click") == true){ //si esta seleccionada la quita su seleccion
-			$(fila).removeClass("fila_click"); //realizo otro click osea que quita la seleccion
+			$(fila).removeClass("fila_click"); // quita la seleccion
 			$(fila).css('background-color',color_original);
 			elemento_fila = fila.getElementsByTagName('input');	
 			//elemento_fila[0].setAttribute('checked',false);		
 			elemento_fila[0].checked = false;
 		}else{// si no esta seleccionada la selecciona
+			
 			$(fila).css('background-color','');
 			$(fila).addClass("fila_click");		
 			elemento_fila 	= fila.getElementsByTagName('input');				
-			
 			elemento_fila[0].checked = true;			
 		}
 	}
+	return false;
 	if(fila.className != "fila_click"){ //si la fila no esta seleccionada
 		if(num_accion==1){ // el foco esta sobre la fila
 			$(fila).css('background-color','');
@@ -45,12 +48,30 @@ PARAMETRO		DESCRIPCION
 fila			todo el objeto de la fila
 num_accion		1=over 2=out 3=click
 ===========================================================================*/
-function f_ver_menu_registro(cod_registro){
+$(function(){
+	$('.elementRowData').click(function(event){
+		f_color_fila(this,3)
+		event.stopPropagation();
+		
+	})
+
+
+	$(".btnSubProcess").click(function(event){
+		let rowIndex = $(this).data("row");
+		$('.subProcessRow:not(#subProcessRow_'+rowIndex+')').hide();
+		let element = $('#subProcessRow_'+rowIndex);
+		element.toggle();
+		return false;
+	})
+})
+
+
+function f_ver_menu_registro(cod_registro,event){
+	
 	f = document.form1;
 	var num_procesos = f.num_procesos_adicionales.value;
-	
-	
-	if(f.num_procesos_adicionales.value==0){
+	return false;
+	if(f.num_procesos_adicionales.value==0 && false){
 		cod_registro_anterior	= cod_registro;	
 		ver_registro(cod_registro_anterior);
 	}else{
@@ -184,7 +205,7 @@ AUTOR:
 PARAMETRO		DESCRIPCION 
 ===========================================================================*/
 function f_eliminar_foto(){
-	confirmacion = confirm("Esta foto se eliminara del sistema ¿Desea Continuar?");
+	confirmacion = confirm("Esta foto se eliminara del sistema ï¿½Desea Continuar?");
 	if(confirmacion==true)		navegar(76);
 }
 /*=====2010/03/18==========================================================>>>>
@@ -207,7 +228,7 @@ PARAMETRO		DESCRIPCION
 function ver_valor_iframe(combo){
 	
 	f									= document.form1;
-	//=== Combos donde se retornara la información >>>
+	//=== Combos donde se retornara la informaciï¿½n >>>
 	combo_codigo_emergente			= document.getElementById(combo.name);
 	combo_texto_nombre_emergente	= document.getElementById("txt_"+combo.name);
 	
@@ -234,7 +255,7 @@ combo_texto_nombre_emergente	="";
 cod_ventana_emergente_anterior	=0;
 function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo){
 	f	=	document.form1;
-	//=== Combos donde se retornara la información >>>
+	//=== Combos donde se retornara la informaciï¿½n >>>
 	combo_codigo_emergente			= document.getElementById(txt_nombre_combo);
 	combo_texto_nombre_emergente	= document.getElementById("txt_"+txt_nombre_combo);
 	

@@ -26,6 +26,7 @@ $row_imputs				=$columna_tabla_autonoma->f_get_imput_filtro_maestro_detalle(
 //=== Cantidad maxima por pantallaso >>>
 if(!$num_max_registros) $num_max_registros=20;
 //=== Evalua si debe limpiar las variables >>>
+
 if($ind_limpiar_variables){
 	$_REQUEST	= $columna_tabla_autonoma->f_limpiar_variables_post(
 													$row_tabla_autonoma		, 
@@ -118,8 +119,9 @@ if($ind_exportar_excel == 1){
 }
 
 
-//=== CONSULTA LA INFORMACIÓN>>>
+//=== CONSULTA LA INFORMACIï¿½N>>>
 if($ind_buscar){
+	
 	$resultado_cursor	= 	$columna_tabla_autonoma->f_consultar_maestro_detalle(
 								$cod_tabla				,
 								$cod_tabla_detalle		,
@@ -178,5 +180,5 @@ else $js_extra = NULL;
 
 $num_procesos_adicionales 	= 	0;
 //=== Evalua algun java script especifico para esta tabla >>>
-$cursor_procesos_adicionales	= $proceso_adicional_pantalla->f_get_procesos_asociados($cod_tabla, 78,NULL,$cod_perfil);
+//$cursor_procesos_adicionales	= $proceso_adicional_pantalla->f_get_procesos_asociados($cod_tabla, 78,NULL,$cod_perfil);
 ?>

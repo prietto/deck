@@ -1,7 +1,7 @@
 <?
 /*=====2009/01/16====================================D E C K===>>>>
 DESCRIPCION: 	Contiene diferentes funciones realcionadas la tabla proceso_adicional_pantalla
-PROPIETARIO:	© D E C K
+PROPIETARIO:	ï¿½ D E C K
 AUTOR:			Cristian Arellano
 ---------------------------------------------------------------------------					
 HISTORIAL DE MODIFICACIONES

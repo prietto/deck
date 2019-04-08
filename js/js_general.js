@@ -36,7 +36,7 @@ $(document).ready(function () {
 		$.cookie("sideBarMenu", test);
 	});
 });
-         
+     
 
 
 /*=====2014/12/10 ==========================================================>>>>
@@ -452,7 +452,7 @@ PARAMETRO		DESCRIPCION
 function ver_valor_script_columna(this_obj,e){
 	//e.preventDefault();
 
-
+	
 
 	var key = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode; 
 	var cod_columna_tabla 	= $(this_obj).data('cod_columna');
@@ -573,7 +573,7 @@ function ver_valor_script_columna(this_obj,e){
 		
 	   if(timeout) { clearTimeout(timeout); }
 	    timeout = setTimeout(() => {
-	    	console.log('hey you!!');
+	    	
 	    	var cod_columna_tabla	=	$(this_obj).data('cod_columna');
 			var id_obj				= 	$(this_obj).attr('id');
 			navegar_ajax_variables(	1061				,

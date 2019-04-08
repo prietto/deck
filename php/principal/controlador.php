@@ -41,6 +41,7 @@ $parametro_sistema				= new parametro_sistema();
 $seg_empresa					= new seg_empresa();
 
 
+
 // si utiliza el metodo de todas las variables del formulario
 $ind_var_ajax = NULL;
 if(isset($_POST['ind_var_ajax']))$ind_var_ajax = $_POST['ind_var_ajax'];
@@ -213,7 +214,6 @@ else if(!$cod_navegacion && $ind_var_ajax == 1){
 }
 
 $flujo_navegacion 		= $seg_navegacion->f_ver_navegacion($cod_navegacion);
-
 $row_flujo_navegacion	= $seg_navegacion->f_get_row($cod_navegacion);
 if(!$flujo_navegacion && $ind_var_ajax == 1){
 	//ob_end_clean(); // destruye el bufer de salida para evitar otros echos anteriores

@@ -50,9 +50,11 @@ $(function(){
 		var val_cod_pk 		= $(this).data('cod_pk');
 		var val_txt_cod_pk	= $(this).data('txt_pk');
 
-		
+		console.log('val_txt_cod_pk=> ',val_txt_cod_pk);
 		$(campo_padre).val(val_cod_pk);
 		$(campo_txt).val(val_txt_cod_pk);
+		$(campo_txt).attr("readonly",true);
+		
 		$(campo_padre).change();
 		$('#'+content_result).empty();
 		$('#'+content_result).hide('fast');

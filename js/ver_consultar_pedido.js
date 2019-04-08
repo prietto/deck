@@ -1,4 +1,19 @@
 
+
+/*=====2008/06/02==================================================>>>>
+DESCRIPCION: 	permite modificar un registro especifico
+AUTOR:			
+---------------------------------------------------------------------------					
+PARAMETRO		DESCRIPCION 
+===========================================================================*/
+function ver_registro(cod_pk){
+	f= document.form1;
+	f.target				= '_self';
+	f.cod_pk.value			= cod_pk;
+	navegar_limpiando_variables(1100);
+}
+
+
 // cambia la ruta por default para mostrar plantilla personalizada
 $(function(){
 	$('#enter2').removeAttr('onclick').click(function(){

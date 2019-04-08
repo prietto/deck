@@ -10,6 +10,14 @@
 
 }
 
+.subProcessRow{
+	display: none;
+}
+
+.boxSubProcess{
+	background-color: #cccccc;
+}
+
 
 .ellipsis {
   text-overflow: ellipsis;
@@ -598,4 +606,29 @@ div.watermark .text {
 
 textarea{
 	font-family: Arial, Helvetica, sans-serif !important;
+}
+
+
+
+
+
+
+.btnClearInput {
+	position:absolute;
+	float:right;
+	height:20px;
+	width:20px;
+	top:5px;
+	right:50px;
+	border-radius:20px;
+	background:#f1f1f1;
+	color:rgb(0, 0, 0);
+	font-weight:bold;
+	text-align:center;
+	cursor:pointer;
+	z-index:10;
+
+}
+.btnClearInput:hover {
+	background:#ccc;
 }

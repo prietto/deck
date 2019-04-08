@@ -1,6 +1,6 @@
 <? require('../../Templates/head_home.inc.php'); ?>
 
-      <div style="margin: 0 auto -50px; min-height: 100%;">
+      <div style="margin: 0 auto -50px; min-height: 100vh;">
         <div class="panel text-right">        
           <div class="bg-info">
             <?php if($cod_usuario){ 
@@ -61,7 +61,7 @@
 
           <? if($cod_perfil == 1) { ?>
             <div class="col-md-3 text-center col-xs-12 col-sm-12">
-              <button class="btn btn-md btn-hover btn-default col-xs-12 col-sm-12 col-md-12" onclick="navegar(1062);">
+              <button class="btn btn-md btn-hover btn-default col-xs-12 col-sm-12 col-md-12" style="margin-bottom:10px;" onclick="navegar(1062);">
                 <div class="ellipsis">
                   <label>Ajustes</label>
                 </div>
@@ -70,7 +70,7 @@
             </div>
             
             <div class="col-md-3 text-center col-xs-12 col-sm-12">
-              <button class="btn btn-md btn-hover btn-default col-xs-12 col-sm-12 col-md-12" onclick="navegar(200);">
+              <button class="btn btn-md btn-hover btn-default col-xs-12 col-sm-12 col-md-12" style="margin-bottom:10px;" onclick="navegar(200);">
                 <div class="ellipsis">
                   <label>Anexos</label>
                 </div>

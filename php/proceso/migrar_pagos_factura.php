@@ -37,7 +37,7 @@ while($row=$db->sacar_registro($cursor)){
 										VALUES
 		
 										($cod_factura,$val_result,'$fec_registro',$cod_usuario,0)";
-		echo $query;
+		
 		//$db->consultar($query);
 	
 	}

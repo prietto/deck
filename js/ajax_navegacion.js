@@ -624,7 +624,7 @@ function navegar_ajax_variables(){
 	}
 
 	ajax_data['cod_navegacion'] = cod_navegacion;
-	var ajax = $.ajax({
+	$.ajax({
             type	: "post",
             url		: "controlador.php",
             data	: ajax_data,
@@ -636,7 +636,7 @@ function navegar_ajax_variables(){
             	//$('.search-background').fadeIn(200);
             },
 			success: function(data) { // devuelve la data del servidor
-
+				
 				if (data != null || data != ''){
 
 					 f_pinta_datos(data,cod_navegacion,obj_accionado);
