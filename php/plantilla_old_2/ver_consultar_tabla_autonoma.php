@@ -435,7 +435,7 @@ function f_seleccionar_todos(chkbox){
   
       <tr>
         <td align="center"  valign="bottom"  class="td_footer"  >
-        	<div>Sistema de informacion desarrollado por Luis Prieto para Comestibles Elsa | Todos los derechos reservados © 2015</div>
+        <div>Sistema de informacion  | Todos los derechos reservados © 2019</div>|<div>Sistema de informacion  | Todos los derechos reservados © 2019</div>
             
          </td>
       </tr>

@@ -19,31 +19,39 @@ class columna_tabla_autonoma{
 	===========================================================================*/
 	function set_fields_box($num_col,$arr_inputs){
 		if(count($arr_inputs)<=0)return false;
-
-		//print_r($arr_inputs);
 		$num_inputs = count($arr_inputs);
 
 		$i = 0;
 		$lenght = 0;
 		$html = "<div>";
-
+		$arr_inputs = array_reverse($arr_inputs);
 		foreach($arr_inputs as $clave => $valor){
 			$lenght++;
-			$i++;
-			if($i==1)$html .= "<div class='form-row'>";
 			
-			//== body ==>
-			$html .= '	<div class="form-group col-md-6">
-							<label for="'.$clave.'">'.$valor["txt_alias"].'</label>
-							'.$valor["input"].'
-						</div>';
 
 			
-			//== end ==>
-			if($i==$num_col){
-				$html .= "</div>";
-				$i=0;
+			if($valor['indPk'] == 1){
+				$html .= $valor["input"];
+			}else{
+				$i++;
+				if($i==1)$html .= "<div class='form-row form-group'>";
+
+				//== body ==>
+				$html .= '	<div class="col-md-6">
+								<label for="'.$clave.'">'.$valor["txt_alias"].'</label>
+								'.$valor["input"].'
+							</div>';
+
+				
+				//== end ==>
+				if($i==$num_col){
+					$html .= "</div>";
+					$i=0;
+				}
+
 			}
+
+			
 			
 			
 		}
@@ -140,8 +148,14 @@ class columna_tabla_autonoma{
 
 
 			  	<div class="tab-content">
-				    <div id="basico" class="tab-pane fade in active">
-				    	<h3>Filtros Basicos</h3>
+						<div id="basico" class="tab-pane fade in active">
+							<div class="col">
+									<div class="col">
+											<span class="float-left"><h3>Filtros Basicos</h3></span>
+											
+									</div>
+							</div>
+
 				      	'.$basicFiltersHtml.'
 				    </div>
 					</div>
@@ -548,7 +562,6 @@ class columna_tabla_autonoma{
 				ind_bloqueado = 0
 		where 	$txt_nombre_pk	=$cod_pk";
 		
-
 		$db->consultar($query);	
 	}
 	/*=====2008/12/15========================================D E C K===>>>>
@@ -1020,7 +1033,7 @@ class columna_tabla_autonoma{
 						
 							<span class=\"input-group-btn\">
 								<button 
-									
+									type		='button'
 									class		='btn btn-default '  
 									name		='button2'								
 									id 			='btn_".$txt_nombre_columna."'								
@@ -1418,6 +1431,7 @@ class columna_tabla_autonoma{
 				
 				
 				$('#".$txt_nombre_columna."').select2({
+						
 						minimumInputLength : 0,
 						allowClear: true,
 						addSelectedTitle: true,
@@ -1449,6 +1463,7 @@ class columna_tabla_autonoma{
 						  }
 						},
 						initSelection: function(element, callback) {
+							
 							// revisa si el elemento tiene un valor inicial o por default y lo carga despues de cargar el plugin
 							// element es el elemento del dom al que se le aplico el plugin select2 y callback la funcion a llamar despues de buscar el valor
 
@@ -1470,9 +1485,21 @@ class columna_tabla_autonoma{
 					});
 					
 					
+					
 				});
 			
-			</script>	";			
+			</script>	";	
+			
+			
+			if($readonly){
+				$row_imput['input']	.=  "
+					<script>
+						$(function(){
+							$('#".$txt_nombre_columna."').
+							(\"readonly\",true);
+						});
+					</script>	";
+			}
 
 		}
 		
@@ -1515,7 +1542,13 @@ class columna_tabla_autonoma{
 			}
 			if(!$row_imput[$txt_nombre_columna]['cursor'])
 				$row_imput[$txt_nombre_columna]['cursor']		= NULL;// Para borrar basura
+			
+			$row_imput[$txt_nombre_columna]['orderInsert']= $row_info_columna['num_orden_insert']; 		
+			$row_imput[$txt_nombre_columna]['indPk']= $row_info_columna['ind_pk']; 		
+			
 		}	
+
+		
 
 
 		return $row_imput;
@@ -1954,9 +1987,6 @@ class columna_tabla_autonoma{
 			$cod_tipo_dato_columna					= $row_info_columna['cod_tipo_dato_columna'];
 			$value									= $val_post[$txt_name_imput];
 
-			echo $txt_nombre_columna." === ".$cod_tipo_dato_columna." /// ";
-			
-			
 			if( $row_info_columna['ind_pk']==1 && $val_post['reg_seleccionado'] && $cant_pk==0){
 				if(is_array($val_post['reg_seleccionado']))	$value		= implode(",",$val_post['reg_seleccionado']);
 				$cant_pk++;
@@ -2007,10 +2037,7 @@ class columna_tabla_autonoma{
 			}
 
 			// fetch autocomplete  ==>
-			if($row_info_columna['cod_tipo_dato_columna']== 19 ){
-				//echo $txt_name_imput;
-				//print_r($_REQUEST);
-			}
+			if($row_info_columna['cod_tipo_dato_columna']== 19 ){}
 
 			//== Evalua el tipo DATE para tener fecha inicial y final >>>
 			if($cod_tipo_dato_columna == 3 || $row_info_columna['cod_tipo_dato_columna']==8){
@@ -2515,7 +2542,7 @@ class columna_tabla_autonoma{
 		
 		
 		$txt_script_consulta	= str_replace("condiciones_script_consulta", $condiciones,$txt_script_consulta);
-
+		
 		//=== Genera consulta para resolver el numero de registros a encontrar (esto se hace para mejorar el rendimiento) >>>
 		$txt_script_consulta		= strtolower($txt_script_consulta); 
 		$txt_script_num_registros	= explode("from",$txt_script_consulta);
@@ -2527,7 +2554,7 @@ class columna_tabla_autonoma{
 		else							$ind_group_by = false;
 		
 		$txt_script_num_registros	= "select count(*) $txt_script_num_registros";
-
+		
 		if($ind_group_by){
 			$cursor_num_registros		= $db->consultar($txt_script_num_registros);
 			$num_reigstros				= $db->num_registros($cursor_num_registros); //por si viene con un group by 
@@ -2546,6 +2573,7 @@ class columna_tabla_autonoma{
 			
 						
 			$query					= "$txt_script_consulta order by $ord_por ".$limite;
+			
 			
 			if($ind_multiple_query >= 0)$cursor 				= $db->consulta_multiple($query);
 			else $cursor 				= $db->consultar($query);
@@ -2911,7 +2939,8 @@ class columna_tabla_autonoma{
 			$cod_tabla_detalle	= NULL	,
 			$estado_ord 		= NULL	,
 			$ord_por			= NULL	,
-			$num_max_registros	= NULL
+			$num_max_registros	= NULL,
+			$cod_navegacion = NULL
 	){
 		global $db;
 		$sis_genericos 		= new sis_genericos;
@@ -2929,7 +2958,7 @@ class columna_tabla_autonoma{
 			$listProcess = [];
 			
 			// == procesos adicionales ===>>>
-			$cursor_procesos_adicionales	= $proceso_adicional_pantalla->f_get_procesos_asociados($cod_tabla, 78,NULL,$cod_perfil);
+			$cursor_procesos_adicionales	= $proceso_adicional_pantalla->f_get_procesos_asociados($cod_tabla, $cod_navegacion,NULL,$cod_perfil);
 			//$num_registros 	= 	$db->num_registros($cursor_procesos_adicionales);
 			while($process = $db->sacar_registro($cursor_procesos_adicionales)){ 
 				array_push($listProcess, $process);
@@ -2975,14 +3004,20 @@ class columna_tabla_autonoma{
 					$array_info_columna[$row['txt_nombre']] = $row;
 				}
 			}
-	
+			
+			$numExtraProcess 	= 	$db->num_registros($cursor_procesos_adicionales);
+
 			// Genera el titulo de la tabla >>>	
 			$titulo_tabla	=	"<tr class='titulo_tabla'>
-													<th>
+													<th class='text-center'>
 														<input type='checkbox' name='check_all' onclick='f_seleccionar_todos(this)'/>
 													</th>
-													<th>&nbsp;</th>
+													
 													";
+
+			if($numExtraProcess>0){
+				$titulo_tabla .= "<th>&nbsp;</th>";
+			}
 			for($i=0; $i<$num_columnas; $i++){
 	
 				$nom_columna	= $db->nom_columna($cursor_datos,$i);
@@ -3057,6 +3092,7 @@ class columna_tabla_autonoma{
 			// Genera datos de la tabla>>>		
 			$num_registros 			= $db->num_registros($cursor_datos);
 			$arr_estandar_celda		= array();
+			
 			for($i=0; $i<$num_registros; $i++){
 				$row_dato	= $db->sacar_registro($cursor_datos,$i);
 				
@@ -3085,7 +3121,7 @@ class columna_tabla_autonoma{
 								onmouseover='f_color_fila(this,1)' 
 								onmouseout='f_color_fila(this,2)' 
 								>";
-					
+				
 				for($j=0; $j<$num_columnas; $j++){
 					$nom_columna		= 	$db->nom_columna($cursor_datos,$j);
 					$row_info_columna	= 	$array_info_columna[$nom_columna];
@@ -3132,11 +3168,14 @@ class columna_tabla_autonoma{
 							$width_pk=" width='1%' ";
 							//=== Añade radio buton para manipular el registro >>>
 							$txt_datos_tabla .= "<td align='center'><input type='checkbox' name='reg_seleccionado[]' value='$tmp_pk' /></td>";
-							$txt_datos_tabla .= '<td align="center" >
+							if($numExtraProcess>0){
+								$txt_datos_tabla .= '<td align="center" >
 																			<div class="btn btn-info btn-xs btnSubProcess" data-row="'.$i.'">
 																				<i class="fa fa-arrow-down" aria-hidden="true"></i>
 																			</div>
 																		</td>';
+							}
+							
 						}
 						//=== Evalua el enlace con el PK en la siguiente columna >>>				
 	//					if($j==1) $value	= "<a href='javascript:f_ver_menu_registro($tmp_pk)' class='link_display'>$value</a>";
@@ -3145,12 +3184,14 @@ class columna_tabla_autonoma{
 					}
 				}
 				$txt_datos_tabla .=  "</tr>";
-				$txt_datos_tabla .=  '<tr class="subProcessRow" id="subProcessRow_'.$i.'">
+
+				if($numExtraProcess>0){
+					$txt_datos_tabla .=  '<tr class="subProcessRow" id="subProcessRow_'.$i.'">
 																<td> &nbsp;</td>
-																<td colspan="'.$num_columnas.'" class="bg-success">
+																<td colspan="'.($num_columnas + 1).'" class="bg-success">
 																	<div class="boxSubProcess">';
-												
-				$numExtraProcess 	= 	$db->num_registros($cursor_procesos_adicionales);
+				}
+
 				for($p=0; $p<count($listProcess); $p++){
 						$row 									= $listProcess[$p];
 						$txt_desc							=$row['txt_descripcion'];
@@ -3158,7 +3199,8 @@ class columna_tabla_autonoma{
 						$txt_nombre						=$row['txt_nombre'];
 						$txt_js								=$row['txt_js'];
 
-						$txt_datos_tabla .= '<button class="btn btn-primary btn-xs col-xs-12 col-sm-2" style="margin:2px;" onClick="javascript:'.$txt_js.'"  '.$attrib.' > '.$txt_nombre.'</button>';
+						$txt_datos_tabla .= '<button type="button" class="btn btn-primary btn-xs col-xs-12 col-sm-2" style="margin:2px;" 
+																	onClick="execFunJs(this,\''.$txt_js.'\')"  '.$attrib.' > '.$txt_nombre.'</button>';
 
 				}
 				
@@ -3168,13 +3210,16 @@ class columna_tabla_autonoma{
 			//=== Evalua si debe mosrar al final alguna sumatoria >>>
 			if($ind_sumatoria){
 				$txt_datos_tabla .=  "<tr class='$class_datos_tabla' 
-												style='background-color: #FFFF99;'  title='Total Columna'><td ></td>";
+												style='background-color: #FFFF99;'  title='Total Columna'><td> &nbsp;</td>";
+				
+				if($numExtraProcess>0){
+					$txt_datos_tabla .= "<td></td>";
+				}
 				for($j=0; $j<$num_columnas; $j++){
 					$nom_columna		= $db->nom_columna($cursor_datos,$j);
 					if($nom_columna!='privado_color'){
 						$value				= $row_sumatoria[$nom_columna];
 						if($value){
-	
 							$value	=$sis_genericos->formato_numero($value,2);
 						}
 		
@@ -3185,6 +3230,7 @@ class columna_tabla_autonoma{
 			}
 			
 			if($total_registros == 1){
+				
 				$total_registros = "<span style='font-size:14px;'>".$total_registros."</span> Registro encontrado";
 			}else{
 				$total_registros = "<span style='font-size:14px;'>".$total_registros."</span> Registros encontrados";
@@ -3200,6 +3246,12 @@ class columna_tabla_autonoma{
 						</span> 
 						
 						<input type='button' value='Mostrar todo' name='' id='mostrar_todo' onclick='f_mostrar_todo(this);' />
+						
+						&nbsp;&nbsp;
+						
+						<a  href='javascript:void(0);' onclick='f_imprimir_reporte();'>Imprimir</a>
+						&nbsp;&nbsp;
+          	<a href='javascript:void(0)' onclick='f_exportar_excel(<?=$cod_navegacion?>,event);'>Exportar Excel</a>
 					</div>
 
 					<div class='table-responsive'> 						
@@ -3550,12 +3602,6 @@ class columna_tabla_autonoma{
 				
 			}
 			
-			//echo "<pre>";
-			//print_r($row_imputs['cod_producto']['input']);
-			//echo "$txt_nombre_columna  ----   ";
-			//if($txt_nombre_columna == 'cod_producto')print_r(str_replace("value_columna",$value,$row_imputs['cod_producto']['input']));
-
-			
 			$row_imputs[$txt_nombre_columna]['input']= str_replace("value_columna",$value,$row_imputs[$txt_nombre_columna]['input']);	
 			
 			// guarda el codigo de columna tabla autonoma para identicarlo por este
@@ -3856,6 +3902,7 @@ class columna_tabla_autonoma{
 		$condicion
 		and			cpn.ind_activo			= 1
 		order by 	cpn.num_orden";
+		
 		$cursor	 = $db->consultar($query);	
 		return $cursor;
 	}	

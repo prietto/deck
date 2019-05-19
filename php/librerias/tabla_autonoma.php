@@ -1,7 +1,7 @@
 <?
 /*=====2008/12/13=======================================D E C K===>>>>
 DESCRIPCION: 	Contiene diferentes funciones realcionadas la tabla tabla_autonoma
-PROPIETARIO:	© D E C K
+PROPIETARIO:	ï¿½ D E C K
 AUTOR:			Cristian Arellano
 ---------------------------------------------------------------------------					
 HISTORIAL DE MODIFICACIONES
@@ -355,7 +355,8 @@ class tabla_autonoma{
 					array_push($arr_val_columna,"NULL");//varchar con o sin numeros
 			}	
 			else 													
-					array_push($arr_val_columna,$default_value);	//date
+
+				array_push($arr_val_columna,$default_value);	//date
 		}
 		$arr_nom_columna	=	implode(",",$arr_nom_columna);//Nombre de las columnas insert
 		$arr_val_columna	=	implode(",",$arr_val_columna);//Valor de las columnas insert
@@ -363,7 +364,7 @@ class tabla_autonoma{
 		insert 	into $txt_nombre_tabla
 				($arr_nom_columna,cod_usuario,ind_bloqueado)
 		values	($arr_val_columna,$cod_usuario,1)";
-
+		
 		$db->consultar($query);
 		$cod_pk	= $GLOBALS['fn_ultimo_registro'];
 		return $cod_pk;

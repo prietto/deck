@@ -1182,6 +1182,7 @@ function cargar_reg_emergente(){
 		combo_codigo_emergente.value		= parametros[0];
 		combo_texto_nombre_emergente.value	= parametros[1];	
 	}
+	$(combo_texto_nombre_emergente).attr("readonly",true);
 	ventana_emergente.close();
 }
 /*=====2005/05/26================================================>>>>

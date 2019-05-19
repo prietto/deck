@@ -393,7 +393,7 @@ function f_esc(){
       <tr>
         <td align="center"  valign="bottom"  class="td_footer"  >
           <? if($_COOKIE['cod_empresa']){ ?>
-        	   <div>Sistema de informacion desarrollado para <?=$_COOKIE['txt_seg_empresa']?> | Todos los derechos reservados © 2015</div>
+        	   <div>Sistema de informacion  | Todos los derechos reservados © 2019</div>desarrollado para <?=$_COOKIE['txt_seg_empresa']?> |<div>Sistema de informacion  | Todos los derechos reservados © 2019</div> |<div>Sistema de informacion  | Todos los derechos reservados © 2019</div>
 
           <? }else{ ?>
               <div>Todos los derechos reservados © 2015</div>

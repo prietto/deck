@@ -11,16 +11,11 @@
         <hr />
 
         <div id="actionsBtn" class="col-md-12 input-group text-center">
-          <button name="enter2" class="btn btn-primary" type="button" id="enter2" 
-                      onclick="f_nuevo_registo();$(this).attr('disabled',true);">Nuevo Registro</button>  
+          <button name="enter2" class="btn btn-primary" type="button" id="enter2" onclick="f_nuevo_registo();$(this).attr('disabled',true);">Nuevo Registro</button>  
           <button class="btn btn-primary" name="enter" id="enter" onclick="f_enter()" type="button">Consultar</button>
+          <button class="btn" name="cleanFilters" id="cleanFilters" onclick="cleanFiltersForm()" type="button">Limpiar Filtros</button>
           <input name="ind_imprimir_reporte" style="visibility:hidden" type="checkbox" id="ind_imprimir_reporte" value="1" />                      
-          <a  href="javascript:void(0);" onclick="f_imprimir_reporte();">Imprimir</a>
-                    &nbsp;&nbsp;
-          <a href="javascript:void(0)" onclick="f_exportar_excel(<?=$cod_navegacion?>,event);">Exportar Excel</a>
-        
-        
-      </div>
+        </div>
 		
 		<?=$tabla_resultado?>
 

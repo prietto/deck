@@ -67,8 +67,6 @@ $cod_reporte_tabla = $reporte_tabla->f_valida_reporte_vs_tabla($cod_reporte_tabl
 $_REQUEST['cod_reporte_tabla'] = $cod_reporte_tabla;
 
 
-//print_r($_REQUEST);
-
 //=== Obtiene los valores asignados en los combos >>>
 $row_imputs	=$columna_tabla_autonoma->f_remplazar_valor_imput_filtro(
 											$row_tabla_autonoma,
@@ -148,7 +146,8 @@ if($ind_buscar){
 									$cod_tabla_detalle			,
 									$estado_ord					,
 									$ord_por					,
-									$num_max_registros
+									$num_max_registros			,
+									78
 								);
 								
 	$num_registros		= 	$resultado_cursor['NUM_REGISTROS'];

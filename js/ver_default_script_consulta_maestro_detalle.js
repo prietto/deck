@@ -1,69 +1,4 @@
-/*=====2010/03/18====================================Arellano Company===>>>>
-DESCRIPCION: 	Metodo para cambiar color de la celda
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-fila			todo el objeto de la fila
-num_accion		1=over 2=out 3=click
-===========================================================================*/
 
-const f_color_fila = (fila,num_accion,event) =>{
-	
-
-	var color_original = $(fila).data('color');
-	
-	if(num_accion==3) {
-		if($(fila).hasClass("fila_click") == true){ //si esta seleccionada la quita su seleccion
-			$(fila).removeClass("fila_click"); // quita la seleccion
-			$(fila).css('background-color',color_original);
-			elemento_fila = fila.getElementsByTagName('input');	
-			//elemento_fila[0].setAttribute('checked',false);		
-			elemento_fila[0].checked = false;
-		}else{// si no esta seleccionada la selecciona
-			
-			$(fila).css('background-color','');
-			$(fila).addClass("fila_click");		
-			elemento_fila 	= fila.getElementsByTagName('input');				
-			elemento_fila[0].checked = true;			
-		}
-	}
-	return false;
-	if(fila.className != "fila_click"){ //si la fila no esta seleccionada
-		if(num_accion==1){ // el foco esta sobre la fila
-			$(fila).css('background-color','');
-			$(fila).addClass("fila_over");
-		}
-		if(num_accion==2){ // sale de la fila pierde el foco
-			 $(fila).removeClass("fila_over");	
-			if($(fila).hasClass("fila_click") == false) $(fila).css('background-color',color_original);
-		}
-	}
-}
-
-/*===== 2014/07/27 =====================================================>>>>
-DESCRIPCION: 	Metodo para cambiar color de la celda
-AUTOR:			Luis Prieto
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-fila			todo el objeto de la fila
-num_accion		1=over 2=out 3=click
-===========================================================================*/
-$(function(){
-	$('.elementRowData').click(function(event){
-		f_color_fila(this,3)
-		event.stopPropagation();
-		
-	})
-
-
-	$(".btnSubProcess").click(function(event){
-		let rowIndex = $(this).data("row");
-		$('.subProcessRow:not(#subProcessRow_'+rowIndex+')').hide();
-		let element = $('#subProcessRow_'+rowIndex);
-		element.toggle();
-		return false;
-	})
-})
 
 
 function f_ver_menu_registro(cod_registro,event){
@@ -280,23 +215,7 @@ function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo){
 
 }
 
-/*=====2008/06/01==========================================================>>>>
-DESCRIPCION: 	Metodo que sera llamado desde una lista de valores para vajar
-				el registro seleccionado
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-valor			cadena separada por comas que contiene todo un registro resultado
-				de una consulta
-===========================================================================*/
-function cargar_reg_emergente(){
-	parametros							= cargar_reg_emergente.arguments;
-	f									= document.form1;				//alias del formulario	
-	combo_codigo_emergente.value		= parametros[0];
-	combo_texto_nombre_emergente.value	= parametros[1];	
-	$(document).focus();
-	ventana_emergente.close();
-}
+
 /*=====2005/05/26========================================================>>>>
 DESCRIPCION: 	se encarga de indicar que la ventana emergente sigue abierta
 AUTOR:			
@@ -323,7 +242,6 @@ function f_ordenar_por(ord_por){
 f = document.form1;
 
 function f_enter(){
-
 	f					= document.form1;
 	f.ind_buscar.value 	=	1;
 	if(f.ind_imprimir_reporte.checked == true){

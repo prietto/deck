@@ -276,7 +276,7 @@ if(class_exists('sis_genericos') != true){
 				
 			}
 			
-			//print_r($arr_fechas);
+			
 			
 		}
 		
@@ -490,8 +490,7 @@ if(class_exists('sis_genericos') != true){
 		FECHA	AUTOR		MODIFICACION
 		===========================================================================*/
 		function f_get_variables_anteriores($request,$array_request_reporte){
-								//print_r($request);
-							//	exit;
+								
 				//==== Evalua para regrese a la pantalla anterior sin hacer cambios >>>
 				if($array_request_reporte){
 
@@ -500,7 +499,6 @@ if(class_exists('sis_genericos') != true){
 					
 					for($i=0; $i<count($array_request_reporte); $i++){
 						$array_request			= explode("=>",$array_request_reporte[$i]);	
-//						print_r($array_request);						
 						$nom_variable			= $array_request[0];
 						$val_variable			= $array_request[1];
 
@@ -509,7 +507,6 @@ if(class_exists('sis_genericos') != true){
 						} // fin if
 					} // fin ciclo
 
-					//print_r($request);
 					return $request;
 				}
 				else return $request;

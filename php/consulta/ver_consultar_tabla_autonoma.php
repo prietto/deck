@@ -160,7 +160,8 @@ if($ind_buscar){
 							NULL					,
 							$estado_ord				,
 							$ord_por				,
-							$num_max_registros
+							$num_max_registros		,
+							39
 							
 							);
 	$num_registros		= 	$resultado_cursor['NUM_REGISTROS'];
@@ -179,6 +180,7 @@ if($ind_buscar){
 								);
 	}
 }
+
 //=== Evalua algun java script especifico para esta tabla >>>
 $row_js_personalizado	= $tabla_autonoma_personalizado->f_get_row($cod_tabla,$cod_navegacion);
 
@@ -187,11 +189,14 @@ else									$js_navegacion = "<script src='../../js/ver_default_script_tabla_au
 if($row_js_personalizado['txt_js_adicional'])		$js_extra	= "<script src='../../js/".$row_js_personalizado['txt_js_adicional']."'></script>";
 else $js_extra = NULL;
 
+
 $txt_consulta = $row_js_personalizado['txt_consulta_php'];
 if($txt_consulta)include('../consulta/'.$txt_consulta.'');
+
 
 //=== Evalua algun java script especifico para esta tabla >>>
 //$cursor_procesos_adicionales	= $proceso_adicional_pantalla->f_get_procesos_asociados($cod_tabla, $cod_navegacion);
 $cursor_procesos_adicionales	= $proceso_adicional_pantalla->f_get_procesos_asociados($cod_tabla, $cod_navegacion,0,$cod_perfil);
 $cursor_procesos_por_registro	= $proceso_adicional_pantalla->f_get_procesos_asociados($cod_tabla, $cod_navegacion,1,$cod_perfil);
+
 ?>

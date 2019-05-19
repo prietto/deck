@@ -48,9 +48,6 @@ margin:0 auto;
 	 $num_registros 	= $db->num_registros($cursor_datos);
 
 	 	while($row=$db->sacar_registro($cursor_datos)){
-			echo "<pre>";
-				print_r($row);		
-			echo "</pre>";
 			// ==== INFORMACION DEL DETALLE DE CADA FACTURA Y VALORES====
 			$cod_factura 		= $row['cod_factura'];
 			$cod_cliente		= $row['cod_cliente'];

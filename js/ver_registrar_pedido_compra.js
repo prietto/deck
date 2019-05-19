@@ -1223,36 +1223,7 @@ function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo, boton, ind_regi
 
 }
 
-/*=====2010/06/01========================================================>>>>
-DESCRIPCION: 	Metodo que sera llamado desde una lista de valores para vajar
-				el registro seleccionado
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-valor			cadena separada por comas que contiene todo un registro resultado
-				de una consulta
-===========================================================================*/
-/*function cargar_reg_emergente(){
-	parametros							= cargar_reg_emergente.arguments;
-	//alert(combo_ubicacion_tr);
-	f									= document.form1;				//alias del formulario	
-	window.focus();
-	if(combo_ubicacion_tr != ""){
-		tr				= document.getElementById(combo_ubicacion_tr);
-		arr_imputs 		= tr.getElementsByTagName('input');	 //obtiene todos los imput contenidos en la fila
-		num_imputs		= arr_imputs.length;
-		for(j=0; j<num_imputs; j++){
-			if		(arr_imputs[j].name == combo_codigo_emergente.name		 &&	parametros[0])		arr_imputs[j].value = parametros[0];
-			else if	(arr_imputs[j].name == combo_texto_nombre_emergente.name && parametros[1])		arr_imputs[j].value = parametros[1];
-		} 
-		addRow(arr_imputs[j-1],'tabla_detalle_'+f.cod_tabla_detalle.value);//evalua si debe añadir un nuevo registro
-		combo_ubicacion_tr ="";
-	}else{
-		combo_codigo_emergente.value		= parametros[0];
-		combo_texto_nombre_emergente.value	= parametros[1];	
-	}
-	ventana_emergente.close();
-}*/
+
 function cargar_reg_emergente(){
 	parametros							= cargar_reg_emergente.arguments;
 	f									= document.form1;				//alias del formulario	

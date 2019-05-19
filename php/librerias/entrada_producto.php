@@ -187,7 +187,7 @@ if(class_exists('entrada_producto') != true){
 						and		ep.cod_estado_entrada_producto	= eep.cod_estado_entrada_producto
 						and 	ep.ind_bloqueado = 0 
 						order by fec_registro desc ".$condicion_extra;
-
+			
 			$cursor = $db->consultar($query);
 			
 			return $cursor;	

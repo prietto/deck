@@ -45,12 +45,12 @@ if(class_exists('seg_empresa') != true){
 
 			$txt_razon_social 			= $var_request['txt_razon_social'];
 			$txt_nombre_comercial		= $var_request['txt_nombre_comercial'];
-			$cod_ciiu					= $var_request['cod_ciiu'];
-			$cod_tipo_identificacion	= $var_request['cod_tipo_identificacion'];
-			$num_identificacion			= $var_request['num_identificacion'];
-			$cod_ciudad					= $var_request['cod_ciudad'];
-			$txt_direccion				= $var_request['txt_direccion'];
-			$txt_telefono				= $var_request['txt_telefono'];
+			$cod_ciiu					= $var_request['cod_ciiu'] ?: "NULL";
+			$cod_tipo_identificacion	= $var_request['cod_tipo_identificacion'] ?: "NULL";
+			$num_identificacion			= $var_request['num_identificacion'] ?: "NULL";
+			$cod_ciudad					= $var_request['cod_ciudad'] ?: "NULL";
+			$txt_direccion				= $var_request['txt_direccion'] ?: "NULL";
+			$txt_telefono				= $var_request['txt_telefono'] ?: "NULL";
 			$ind_genera_iva				= $var_request['ind_genera_iva'] == NULL ? 'NULL' :  $var_request['ind_genera_iva'];
 			$val_porcentaje_iva			= $var_request['val_porcentaje_iva'] == NULL ? 'NULL' :  $var_request['val_porcentaje_iva'];
 			$fec_fundacion				= $var_request['fec_fundacion'];

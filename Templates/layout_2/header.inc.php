@@ -24,13 +24,15 @@
 
 <!-- CDN BOOTSTRAP -->
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="../../estilos/bootstrap.3.3.7.min.css" rel="stylesheet" crossorigin="anonymous"/>
+<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href="../../estilos/bootstrap-theme.3.3.7.min.css" rel="stylesheet" crossorigin="anonymous"/>
+<!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../../js/bootstrap.3.3.7.min.js" crossorigin="anonymous"></script>
 
 <script src="../../js/jquery.simplemodal.js" ></script>
 <script src="../../js/timepicker.js"></script>
@@ -101,13 +103,13 @@
                         $active         = $cod_tabla == $codModule ? "active" : '';
 
                         if(in_array($codModule, $arrayModules)){ ?>
-                            <li class="<?=$active?> row">
+                            <li class="<?=$active?> col text-center">
                                 <div class="form-inline">
                                     <a href="#" class="col-md-12" onclick="goToModule(<?=$codModule?>,<?=$detailModule?>);">
                                         <div class="col-md-3" >
                                             <i class="fas <?=$iconModule?> fa-2x"></i> 
                                         </div>
-                                        <div class="col-md-9">
+                                        <div >
                                             <?=ucfirst(strtolower($rowModule['txt_alias']))?>
                                         </div>
                                     </a>

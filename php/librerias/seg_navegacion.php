@@ -1,7 +1,7 @@
 <?
 /*=====2005/05/22=====================================D E C K===>>>>
 DESCRIPCION: 	Contiene las consultas necesarias navegar entre paginas
-PROPIETARIO:	© D E C K
+PROPIETARIO:	ï¿½ D E C K
 AUTOR:			Cristian Arellano
 ---------------------------------------------------------------------------					
 HISTORIAL DE MODIFICACIONES
@@ -50,7 +50,9 @@ class seg_navegacion{
 		$query ="
 		select 	* 
 		from 	seg_navegacion
-		where	cod_navegacion = $cod_navegacion";
+		where	cod_navegacion = ".$cod_navegacion;
+		
+		
 		$registro = $db->consultar_registro($query);	
 		return $registro;
 	}

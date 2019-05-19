@@ -1,30 +1,4 @@
-/*=====2010/03/18====================================Arellano Company===>>>>
-DESCRIPCION: 	Metodo para cambiar color de la celda
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-fila			todo el objeto de la fila
-num_accion		1=over 2=out 3=click
-===========================================================================*/
-function f_color_fila(fila,num_accion){
-	if(num_accion==3) {
-		if(fila.className == "fila_click"){ //si esta seleccionada la quita su seleccion
-			fila.className = "contenido"; //realizo otro click osea que quita la seleccion
-			elemento_fila = fila.getElementsByTagName('input');	
-			//elemento_fila[0].setAttribute('checked',false);		
-			elemento_fila[0].checked = false;
-		}else{// si no esta seleccionada la selecciona
-			fila.className 	= "fila_click";		
-			elemento_fila 	= fila.getElementsByTagName('input');				
-			//elemento_fila[0].setAttribute('checked',true);		
-			elemento_fila[0].checked = true;			
-		}
-	}
-	if(fila.className != "fila_click"){ //si la fila no esta seleccionada
-		if(num_accion==1) fila.className = "fila_over";
-		if(num_accion==2) fila.className = "fila_out";	
-	}
-}
+
 
 
 /*=====2014/05/07 ==========================================================>>>>
@@ -326,23 +300,7 @@ function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo){
 
 }
 
-/*=====2008/06/01==========================================================>>>>
-DESCRIPCION: 	Metodo que sera llamado desde una lista de valores para vajar
-				el registro seleccionado
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-valor			cadena separada por comas que contiene todo un registro resultado
-				de una consulta
-===========================================================================*/
-function cargar_reg_emergente(){
-	parametros							= cargar_reg_emergente.arguments;
-	f									= document.form1;				//alias del formulario	
-	combo_codigo_emergente.value		= parametros[0];
-	combo_texto_nombre_emergente.value	= parametros[1];	
-	window.focus();
-	ventana_emergente.close();
-}
+
 /*=====2005/05/26========================================================>>>>
 DESCRIPCION: 	se encarga de indicar que la ventana emergente sigue abierta
 AUTOR:			

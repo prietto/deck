@@ -215,23 +215,7 @@ function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo){
 
 }
 
-/*=====2008/06/01==========================================================>>>>
-DESCRIPCION: 	Metodo que sera llamado desde una lista de valores para vajar
-				el registro seleccionado
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-valor			cadena separada por comas que contiene todo un registro resultado
-				de una consulta
-===========================================================================*/
-function cargar_reg_emergente(){
-	parametros							= cargar_reg_emergente.arguments;
-	f									= document.form1;				//alias del formulario	
-	combo_codigo_emergente.value		= parametros[0];
-	combo_texto_nombre_emergente.value	= parametros[1];	
-	window.focus();
-	ventana_emergente.close();
-}
+
 /*=====2005/05/26========================================================>>>>
 DESCRIPCION: 	se encarga de indicar que la ventana emergente sigue abierta
 AUTOR:			

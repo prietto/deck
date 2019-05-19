@@ -21,7 +21,80 @@ $.datepicker.regional['es'] = {
  
  $.datepicker.setDefaults($.datepicker.regional['es']);
 
+
+ /*=====2010/03/18====================================Arellano Company===>>>>
+DESCRIPCION: 	Metodo para cambiar color de la celda
+AUTOR:			
+---------------------------------------------------------------------------					
+PARAMETRO		DESCRIPCION 
+fila			todo el objeto de la fila
+num_accion		1=over 2=out 3=click
+===========================================================================*/
+function f_color_fila(fila,num_accion,callback){
+
+	var color_original = $(fila).data('color');
+	
+	if(num_accion==3) {
+		if($(fila).hasClass("fila_click") == true){ //si esta seleccionada la quita su seleccion
+			$(fila).removeClass("fila_click"); //realizo otro click osea que quita la seleccion
+			$(fila).css('background-color',color_original);
+			elemento_fila = fila.getElementsByTagName('input');	
+			//elemento_fila[0].setAttribute('checked',false);		
+			elemento_fila[0].checked = false;
+		}else{// si no esta seleccionada la selecciona
+			$(fila).css('background-color','');
+			$(fila).addClass("fila_click");		
+			elemento_fila 	= fila.getElementsByTagName('input');				
+			
+			elemento_fila[0].checked = true;			
+		}
+	}
+	if(fila.className != "fila_click"){ //si la fila no esta seleccionada
+		if(num_accion==1){ // el foco esta sobre la fila
+			$(fila).css('background-color','');
+			$(fila).addClass("fila_over");
+		}
+		if(num_accion==2){ // sale de la fila pierde el foco
+			 $(fila).removeClass("fila_over");	
+			if($(fila).hasClass("fila_click") == false) $(fila).css('background-color',color_original);
+		}
+	}
+
+	if(callback)callback();
+}
+
+
+/** Function clear filters principal form search */
+function cleanFiltersForm(){
+	const blackList = ['cod_reporte_tabla'];
+	let filtersTable = $('#tabla_filtros');
+	filtersTable.find('input, select, textarea').each(
+		function(index){
+			let input = $(this);
+			let name = input.attr('name');
+			if(!blackList.includes(name)){
+				$(input).val('');
+			}
+		}
+	);
+}
  
+
+ /*===== 2014/07/27 =====================================================>>>>
+DESCRIPCION: 	Metodo para cambiar color de la celda
+AUTOR:			Luis Prieto
+---------------------------------------------------------------------------					
+PARAMETRO		DESCRIPCION 
+fila			todo el objeto de la fila
+num_accion		1=over 2=out 3=click
+===========================================================================*/
+$(function(){
+	$('.elementRowData').click(function(event){
+		f_color_fila(this,3)
+		event.stopPropagation();
+		
+	})
+})
 
 
 
@@ -36,7 +109,49 @@ $(document).ready(function () {
 		$.cookie("sideBarMenu", test);
 	});
 });
-     
+	 
+
+$(function(){
+	$(".btnSubProcess").click(function(event){
+		let rowIndex = $(this).data("row");
+		$('.subProcessRow:not(#subProcessRow_'+rowIndex+')').hide();
+		let element = $('#subProcessRow_'+rowIndex);
+		element.toggle();
+		return false;
+	})
+})
+
+
+/*=====2008/06/01==========================================================>>>>
+DESCRIPCION: 	Metodo que sera llamado desde una lista de valores para vajar
+				el registro seleccionado
+AUTOR:			
+---------------------------------------------------------------------------					
+PARAMETRO		DESCRIPCION 
+valor			cadena separada por comas que contiene todo un registro resultado
+				de una consulta
+===========================================================================*/
+function cargar_reg_emergente(){
+	parametros							= cargar_reg_emergente.arguments;
+	f									= document.form1;				//alias del formulario	
+	combo_codigo_emergente.value		= parametros[0];
+	combo_texto_nombre_emergente.value	= parametros[1];	
+	$(combo_texto_nombre_emergente).attr("readonly",true);
+	window.focus();
+	ventana_emergente.close();
+}
+
+
+
+
+/* Execute function by view */
+function execFunJs($this,func){
+	let trParent = $($this).parent().parent().parent().prev();
+	f_color_fila(trParent[0],3,function(){
+		eval(func);
+	});
+
+}
 
 
 /*=====2014/12/10 ==========================================================>>>>

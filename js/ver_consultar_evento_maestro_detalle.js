@@ -110,7 +110,7 @@ AUTOR:
 PARAMETRO		DESCRIPCION 
 ===========================================================================*/
 function f_eliminar_foto(){
-	confirmacion = confirm("Esta foto se eliminara del sistema ¿Desea Continuar?");
+	confirmacion = confirm("Esta foto se eliminara del sistema ï¿½Desea Continuar?");
 	if(confirmacion==true)		navegar(76);
 }
 /*=====2010/03/18==========================================================>>>>
@@ -132,7 +132,7 @@ PARAMETRO		DESCRIPCION
 ===========================================================================*/
 function ver_valor_iframe(combo){
 	f									= document.form1;
-	//=== Combos donde se retornara la información >>>
+	//=== Combos donde se retornara la informaciï¿½n >>>
 	combo_codigo_emergente			= document.getElementById(combo.name);
 	combo_texto_nombre_emergente	= document.getElementById("txt_"+combo.name);
 	
@@ -154,7 +154,7 @@ combo_texto_nombre_emergente	="";
 cod_ventana_emergente_anterior	=0;
 function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo){
 	f	=	document.form1;
-	//=== Combos donde se retornara la información >>>
+	//=== Combos donde se retornara la informaciï¿½n >>>
 	combo_codigo_emergente			= document.getElementById(txt_nombre_combo);
 	combo_texto_nombre_emergente	= document.getElementById("txt_"+txt_nombre_combo);
 	
@@ -179,23 +179,7 @@ function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo){
 
 }
 
-/*=====2008/06/01==========================================================>>>>
-DESCRIPCION: 	Metodo que sera llamado desde una lista de valores para vajar
-				el registro seleccionado
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-valor			cadena separada por comas que contiene todo un registro resultado
-				de una consulta
-===========================================================================*/
-function cargar_reg_emergente(){
-	parametros							= cargar_reg_emergente.arguments;
-	f									= document.form1;				//alias del formulario	
-	combo_codigo_emergente.value		= parametros[0];
-	combo_texto_nombre_emergente.value	= parametros[1];	
-	document.focus();
-	ventana_emergente.close();
-}
+
 /*=====2005/05/26========================================================>>>>
 DESCRIPCION: 	se encarga de indicar que la ventana emergente sigue abierta
 AUTOR:			

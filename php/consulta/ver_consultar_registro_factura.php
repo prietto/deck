@@ -4,6 +4,7 @@ include_once('../librerias/pedido.php');
 include_once('../librerias/pedido_detalle.php');
 include_once('../librerias/cliente.php');
 include_once('../librerias/factura_pago.php');
+include_once('../librerias/tabla_autonoma.php');
 
 
 $factura 		= new factura();
@@ -12,6 +13,7 @@ $pedido_detalle	= new pedido_detalle();
 $sis_genericos	= new sis_genericos();
 $cliente		= new cliente();
 $factura_pago	= new factura_pago();
+$tabla_autonoma = new tabla_autonoma();
 
 $cod_factura = $cod_pk;
 

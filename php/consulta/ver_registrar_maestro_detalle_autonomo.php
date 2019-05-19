@@ -55,6 +55,9 @@ if(!$ind_guardar_datos_tabla_autonoma){
 
 $num_columnas			=	count($row_imputs);
 
+//=== campos del formulario ==>>>
+$fields_box = $columna_tabla_autonoma->set_fields_box(2,$row_imputs);
+
 //=== Valida si puede mostrar el boton de guardar la modificacion de un registro>>>
 $ind_mostrar_boton_guardar		= false;
 if($ind_new_row)

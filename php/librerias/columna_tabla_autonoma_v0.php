@@ -1,7 +1,7 @@
 <?php
 /*=====2008/12/15=======================================D E C K===>>>>
 DESCRIPCION: 	Contiene diferentes funciones realcionadas la tabla columna_tabla_autonoma
-PROPIETARIO:	© D E C K
+PROPIETARIO:	ï¿½ D E C K
 AUTOR:			
 ---------------------------------------------------------------------------					
 HISTORIAL DE MODIFICACIONES
@@ -608,7 +608,7 @@ class columna_tabla_autonoma{
 			$ind_multiple = FALSE;
 		}
 				
-		// si el indicardor de not null esta en 1 añade atribute require
+		// si el indicardor de not null esta en 1 aï¿½ade atribute require
 		if($ind_not_null == 1)	$required = "required='required'";
 		else					$required = "";
 		
@@ -703,7 +703,7 @@ class columna_tabla_autonoma{
 				$(function(){
 					$('#$txt_nombre_columna').datetimepicker({
 						changeMonth: true, // Muestra comobobox para seleccionar el mes
-						//changeYear:  true, // Muestra comobobox para seleccionar el año
+						//changeYear:  true, // Muestra comobobox para seleccionar el aï¿½o
 						yearRange: 'c-100:c+10',
 						//hourGrid: 4,
 						//secondGrid: 10, 
@@ -991,7 +991,7 @@ class columna_tabla_autonoma{
 			// si se ha indicado que permite seleccion multiple
 			if($ind_multiple == true){
 				
-				// estilo para no mostrar el select sin el widget cargado ya que afecta el diseño de la pagina
+				// estilo para no mostrar el select sin el widget cargado ya que afecta el diseï¿½o de la pagina
 				$style='style="display:none;"';
 				//$style='style="height:15px;"';
 				 
@@ -1919,7 +1919,7 @@ class columna_tabla_autonoma{
 			//=== Evalua datos tipo VARCHAR CON O SIN NUMEROS >>>
 			else if(($row_info_columna['cod_tipo_dato_columna'] == 1 || 
 					$row_info_columna['cod_tipo_dato_columna'] == 15)  && $value != NULL){
-				//=== Evita con caracteres especiales como ñ, espacios, etc >>>
+				//=== Evita con caracteres especiales como ï¿½, espacios, etc >>>
 				$value = $sis_genericos->f_preparar_cadena_para_db($value);
 				array_push($condicion,"t.$txt_nombre_columna like '%$value%'");
 				
@@ -2201,7 +2201,7 @@ class columna_tabla_autonoma{
 			//=== Evalua datos tipo VARCHAR CON O SIN NUMEROS >>>
 			else if(($row_info_columna['cod_tipo_dato_columna'] == 1 || 
 					$row_info_columna['cod_tipo_dato_columna'] == 15)  && $value != NULL){
-				//=== Evita con caracteres especiales como ñ, espacios, etc >>>
+				//=== Evita con caracteres especiales como ï¿½, espacios, etc >>>
 				$value = $sis_genericos->f_preparar_cadena_para_db($value);
 				array_push($condicion,"$t.$txt_nombre_columna like '%$value%'");
 				
@@ -2384,7 +2384,7 @@ class columna_tabla_autonoma{
 			//=== Evalua datos tipo VARCHAR CON O SIN NUMEROS >>>
 			else if(($row_info_columna['cod_tipo_dato_columna'] == 1 || 
 					$row_info_columna['cod_tipo_dato_columna'] == 15)  && $value != NULL){
-				//=== Evita con caracteres especiales como ñ, espacios, etc >>>
+				//=== Evita con caracteres especiales como ï¿½, espacios, etc >>>
 				$value = $sis_genericos->f_preparar_cadena_para_db($value);
 				array_push($condicion,"UPPER(t.$txt_nombre_columna) like '%$value%'");
 				
@@ -2458,7 +2458,7 @@ class columna_tabla_autonoma{
 			}
 			//=== Evalua datos tipo VARCHAR CON O SIN NUMEROS >>>
 			else if(($row_info_columna['cod_tipo_dato_columna'] == 1 || $row_info_columna['cod_tipo_dato_columna'] == 15)  && $value != NULL){
-				//=== Evita con caracteres especiales como ñ, espacios, etc >>>
+				//=== Evita con caracteres especiales como ï¿½, espacios, etc >>>
 				$value = $sis_genericos->f_preparar_cadena_para_db($value);
 				array_push($condicion,"UPPER(t2.$txt_nombre_columna) like '%$value%'");
 				
@@ -2840,7 +2840,7 @@ class columna_tabla_autonoma{
 	//						$value	= "<a href='javascript:ver_menu_registro($value)' class='link_display' >$value</a>";
 							$value	= "<a href='javascript:ver_menu_registro($value)' >$value</a>";
 							$width_pk=" width='1%'  onclick='javascript:f_ver_menu_registro($tmp_pk)'";
-							//=== Añade radio buton para manipular el registro >>>
+							//=== Aï¿½ade radio buton para manipular el registro >>>
 							$txt_datos_tabla .= "<td align='center'><input type='checkbox' name='reg_seleccionado[]' value='$tmp_pk' /></td>";
 						}
 						//=== Evalua el enlace con el PK en la siguiente columna >>>				
@@ -2912,7 +2912,7 @@ class columna_tabla_autonoma{
 							// borra el id del clon
 							$(clon_thead).attr('id','');
 							
-							// añade clase para indicar que es un clon
+							// aï¿½ade clase para indicar que es un clon
 							$(clon_thead).addClass('clon_thead');
 	
 							var body_cells = $('#thead th');
@@ -2971,7 +2971,7 @@ class columna_tabla_autonoma{
 									var margin_l = (Number(w_clon)/2)-Number(w_clon);
 									
 									
-									// añadimos propiedades css al elemento clon
+									// aï¿½adimos propiedades css al elemento clon
 									//$(clon_thead).css({'left':'50%','margin-left':margin_l});						
 									$(clon_thead).css({'left':$(padre_clon).position().left});						
 									
@@ -3237,11 +3237,6 @@ class columna_tabla_autonoma{
 				
 			}
 			
-			//echo "<pre>";
-			//print_r($row_imputs['cod_producto']['input']);
-			//echo "$txt_nombre_columna  ----   ";
-			//if($txt_nombre_columna == 'cod_producto')print_r(str_replace("value_columna",$value,$row_imputs['cod_producto']['input']));
-
 			
 			$row_imputs[$txt_nombre_columna]['input']= str_replace("value_columna",$value,$row_imputs[$txt_nombre_columna]['input']);	
 			
@@ -3293,7 +3288,7 @@ class columna_tabla_autonoma{
 		$cursor_valores_detalle		= $this->f_get_valores_detalle($nom_tabla_detalle, $nom_pk_maestro, $cod_pk_maestro);
 		$num_registros_detalle		= $db->num_registros($cursor_valores_detalle);
 
-		//=== Si no refrescaron la pantalla consigue información de la base de datos >>>
+		//=== Si no refrescaron la pantalla consigue informaciï¿½n de la base de datos >>>
 		if(!$ind_pantalla_refrescada){ 	
 			$post	= 	$this->f_get_valor_imput_detalle(
 						$cod_pk_maestro		,
@@ -3695,7 +3690,7 @@ class columna_tabla_autonoma{
 				$(function(){
 					$('#$txt_attr_id').datetimepicker({
 						changeMonth: true, // Muestra comobobox para seleccionar el mes
-						//changeYear:  true, // Muestra comobobox para seleccionar el año
+						//changeYear:  true, // Muestra comobobox para seleccionar el aï¿½o
 						yearRange: 'c-100:c+10',
 						//hourGrid: 4,
 						//secondGrid: 10, 
@@ -4271,7 +4266,7 @@ class columna_tabla_autonoma{
 					$cod_tipo_dato_columna == 15
 					
 		 ){
-			//=== Evita con caracteres especiales como ñ, espacios, etc >>>
+			//=== Evita con caracteres especiales como ï¿½, espacios, etc >>>
 			if(!$value){ 	
 				$value = "NULL";
 			}else{

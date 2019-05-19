@@ -45,11 +45,13 @@ if(!$ind_guardar_datos_tabla_autonoma){
 }
 
 
-
-
 $num_columnas			=count($row_imputs);
 $alias_tabla_autonoma	= strtoupper($row_tabla_autonoma['txt_alias']);
 $alias_tabla_autonoma	= str_replace("_"," ",$alias_tabla_autonoma);
+
+
+//=== campos del formulario ==>>>
+$fields_box = $columna_tabla_autonoma->set_fields_box(2,$row_imputs);
 
 //=== Valida si puede mostrar el boton de guardar la modificacion de un registro>>>
 $ind_mostrar_boton_guardar		= false;
@@ -64,8 +66,8 @@ $ind_mostrar_boton_eliminar = 	$seg_permiso_tabla_autonoma->f_get_permiso_delete
 //=== Evalua algun java script especifico para esta tabla >>>
 
 $row_js_personalizado	= $tabla_autonoma_personalizado->f_get_row($cod_tabla,$cod_navegacion);
-if($row_js_personalizado['txt_js'])		$js_navegacion = "../../js/".$row_js_personalizado['txt_js'];
-else									$js_navegacion = "../../js/ver_default_script_tabla_autonoma.js";
+if($row_js_personalizado['txt_js'])		$js_navegacion 	= "<script src='../../js/".$row_js_personalizado['txt_js']."'></script>";
+else									$js_navegacion 	= "<script src='../../js/ver_default_script_maestro_detalle.js'></script>";
 
 
 // ==== consulta todas las entradas que ha tenido el producto

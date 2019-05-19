@@ -107,8 +107,6 @@ class producto{
 		$arr_cantidad			= $var_request['cantidad'];
 		
 		$cod_pedido				= $var_request['cod_pedido'];
-		//print_r($var_request);
-		
 		$query = "select cod_pedido_detalle from pedido_detalle where cod_pedido = $cod_pedido";
 		$cursor = $db->consultar($query);
 		$arr_pedido_detalle_db = array();

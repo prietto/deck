@@ -8,7 +8,7 @@ node			boton seleccionado
 id_tabla		id de la tabla 
 ===========================================================================*/
 /*function eliminar_fila(node,id_tabla) {
-	confirmacion = confirm("Se eliminara el registro seleccionados\n\n ¿Desea Continuar?");
+	confirmacion = confirm("Se eliminara el registro seleccionados\n\n ï¿½Desea Continuar?");
 	if(confirmacion==false) return false;
 	var t 			= document.getElementById(id_tabla);
 	var tr 			= node.parentNode.parentNode;
@@ -60,7 +60,7 @@ function eliminar_fila(node,id_tabla) {
 
 
 	// LLAMA A LA FUNCION CONFIRM  EJECTUTANDO UN CALLBACK PRIMERO Y DEVOLVIENDO UNA RESPUESTA
-	confirm("Se eliminara el registro seleccionados\n\n ¿Desea Continuar?", function (a) {
+	confirm("Se eliminara el registro seleccionados\n\n ï¿½Desea Continuar?", function (a) {
 		if(a == "si"){ // la funcion callback devuelve un valor dependiendo del boton seleccionado
 				
 			
@@ -189,45 +189,6 @@ PARAMETRO		DESCRIPCION
 fila			todo el objeto de la fila
 num_accion		1=over 2=out 3=click
 ===========================================================================*/
-function f_color_fila(fila,num_accion){
-
-	var color_original = $(fila).data('color');
-	
-	if(num_accion==3) {
-		if($(fila).hasClass("fila_click") == true){ //si esta seleccionada la quita su seleccion
-			$(fila).removeClass("fila_click"); //realizo otro click osea que quita la seleccion
-			$(fila).css('background-color',color_original);
-			elemento_fila = fila.getElementsByTagName('input');	
-			//elemento_fila[0].setAttribute('checked',false);		
-			elemento_fila[0].checked = false;
-		}else{// si no esta seleccionada la selecciona
-			$(fila).css('background-color','');
-			$(fila).addClass("fila_click");		
-			elemento_fila 	= fila.getElementsByTagName('input');				
-			
-			elemento_fila[0].checked = true;			
-		}
-	}
-	if(fila.className != "fila_click"){ //si la fila no esta seleccionada
-		if(num_accion==1){ // el foco esta sobre la fila
-			$(fila).css('background-color','');
-			$(fila).addClass("fila_over");
-		}
-		if(num_accion==2){ // sale de la fila pierde el foco
-			 $(fila).removeClass("fila_over");	
-			if($(fila).hasClass("fila_click") == false) $(fila).css('background-color',color_original);
-		}
-	}
-}
-
-/*=====2010/03/18====================================Arellano Company===>>>>
-DESCRIPCION: 	Metodo para cambiar color de la celda
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-fila			todo el objeto de la fila
-num_accion		1=over 2=out 3=click
-===========================================================================*/
 var cod_registro_anterior = "";
 /*function f_ver_menu_registro(cod_registro){
 
@@ -322,7 +283,7 @@ function marcar(combo){
    checkboxes=document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
    for(i=0;i<checkboxes.length;i++){ //recoremos todos los controles
       if(checkboxes[i].type == "checkbox"){ //solo si es un checkbox entramos
-       checkboxes[i].checked=combo.checked; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
+       checkboxes[i].checked=combo.checked; //si es un checkbox le damos el valor del checkbox que lo llamï¿½ (Marcar/Desmarcar Todos)
       }
    }
 }
@@ -517,7 +478,7 @@ AUTOR:
 PARAMETRO		DESCRIPCION 
 ===========================================================================*/
 function f_eliminar_foto(){
-	confirmacion = confirm("Esta foto se eliminara del sistema ¿Desea Continuar?");
+	confirmacion = confirm("Esta foto se eliminara del sistema ï¿½Desea Continuar?");
 	if(confirmacion==true)		navegar(76);
 }
 /*=====2010/03/18==========================================================>>>>
@@ -539,7 +500,7 @@ PARAMETRO		DESCRIPCION
 ===========================================================================*/
 function ver_valor_iframe(combo){
 	f									= document.form1;
-	//=== Combos donde se retornara la información >>>
+	//=== Combos donde se retornara la informaciï¿½n >>>
 	combo_codigo_emergente			= document.getElementById(combo.name);
 	combo_texto_nombre_emergente	= document.getElementById("txt_"+combo.name);
 	
@@ -567,7 +528,7 @@ combo_texto_nombre_emergente	="";
 cod_ventana_emergente_anterior	=0;
 function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo){
 	f	=	document.form1;
-	//=== Combos donde se retornara la información >>>
+	//=== Combos donde se retornara la informaciï¿½n >>>
 	combo_codigo_emergente			= document.getElementById(txt_nombre_combo);
 	combo_texto_nombre_emergente	= document.getElementById("txt_"+txt_nombre_combo);
 	
@@ -591,24 +552,7 @@ function ver_lista_valor(cod_ventana_emergente,txt_nombre_combo){
 
 }
 
-/*=====2008/06/01==========================================================>>>>
-DESCRIPCION: 	Metodo que sera llamado desde una lista de valores para vajar
-				el registro seleccionado
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-valor			cadena separada por comas que contiene todo un registro resultado
-				de una consulta
-===========================================================================*/
-function cargar_reg_emergente(){
-	parametros							= cargar_reg_emergente.arguments;
-	f									= document.form1;				//alias del formulario	
-	combo_codigo_emergente.value		= parametros[0];
-	combo_texto_nombre_emergente.value	= parametros[1];	
-	$(document).focus();
-	//window.focus();
-	ventana_emergente.close();
-}
+
 /*=====2005/05/26========================================================>>>>
 DESCRIPCION: 	se encarga de indicar que la ventana emergente sigue abierta
 AUTOR:			
@@ -670,10 +614,11 @@ AUTOR:
 ---------------------------------------------------------------------------					
 PARAMETRO		DESCRIPCION 
 ===========================================================================*/
-function ver_registro(){
+function ver_registro(cod_pk){
+	
 	f= document.form1;
 	f.target				= '_self';
-	f.cod_pk.value			= cod_registro_anterior;	
+	f.cod_pk.value			= cod_pk;	
 	navegar_limpiando_variables(37);
 }
 

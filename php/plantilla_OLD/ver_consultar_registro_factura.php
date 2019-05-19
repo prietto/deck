@@ -486,7 +486,6 @@ for($i=0; $i<$num_columnas; $i++){
                 </tr>
                 <? 
 				while($row = $db->sacar_registro($cursor_pagos_factura)){
-					//echo "<pre>";print_r($row);echo "</pre>";
 					$val_pago		 	= $row['val_pago'];
 					$val_pago_formato 	= $row['val_pago'];
 					$fec_pago			= $row['fec_registro'];
@@ -602,7 +601,7 @@ function f_esc(){
   
       <tr>
         <td align="center"  valign="bottom"  class="td_footer"  >
-        	<div>Sistema de informacion desarrollado por Luis Prieto para Comestibles Elsa | Todos los derechos reservados © 2015</div>
+        	<div>Sistema de informacion  | Todos los derechos reservados © 2019</div> |<div>Sistema de informacion  | Todos los derechos reservados © 2019</div>|<div>Sistema de informacion  | Todos los derechos reservados © 2019</div> |<div>Sistema de informacion  | Todos los derechos reservados © 2019</div>
             
          </td>
       </tr>

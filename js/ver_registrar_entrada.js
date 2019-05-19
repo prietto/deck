@@ -5,10 +5,13 @@ $(function(){
  	$("#cod_unidad_medida").find('option').removeAttr("selected");
 	
 	var value_seleccionado =	$("input[name=reg_seleccionado]").val();
+	let productField = $('#cod_producto');
+	setTimeout(function(){ $('#cod_producto').select2("readonly",true); }, 1);
+	productField.val(value_seleccionado);
 
 	// selecciona la opcion del select 
-	$('#cod_producto > option[value="'+value_seleccionado+'"]').prop('selected',true);
-    $('#cod_unidad_medida > option[value="1"]').prop('selected',true);
+	//$('#cod_producto > option[value="'+value_seleccionado+'"]').prop('selected',true);
+    //$('#cod_unidad_medida > option[value="1"]').prop('selected',true);
 	
 
 	$("#cod_producto").change(function(){
@@ -465,33 +468,6 @@ function addRow(node,id_tabla) {
 }
 
 
-/*=====2010/03/18====================================Arellano Company===>>>>
-DESCRIPCION: 	Metodo para cambiar color de la celda
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-fila			todo el objeto de la fila
-num_accion		1=over 2=out 3=click
-===========================================================================*/
-function f_color_fila(fila,num_accion){
-	if(num_accion==3) {
-		if(fila.className == "fila_click"){ //si esta seleccionada la quita su seleccion
-			fila.className = "contenido"; //realizo otro click osea que quita la seleccion
-			elemento_fila = fila.getElementsByTagName('input');	
-			//elemento_fila[0].setAttribute('checked',false);		
-			elemento_fila[0].checked = false;
-		}else{// si no esta seleccionada la selecciona
-			fila.className 	= "fila_click";		
-			elemento_fila 	= fila.getElementsByTagName('input');				
-			//elemento_fila[0].setAttribute('checked',true);		
-			elemento_fila[0].checked = true;			
-		}
-	}
-	if(fila.className != "fila_click"){ //si la fila no esta seleccionada
-		if(num_accion==1) fila.className = "fila_over";
-		if(num_accion==2) fila.className = "fila_out";	
-	}
-}
 
 
 /*=====2010/03/18====================================Arellano Company===>>>>
@@ -920,7 +896,8 @@ function f_ordenar_por(ord_por){
 f = document.form1;
 
 function f_enter(){
-
+	console.log('entreeee');
+	return false;
 	f					= document.form1;
 	f.ind_buscar.value 	=	1;
 	if(f.ind_imprimir_reporte.checked == true){
@@ -932,6 +909,7 @@ function f_enter(){
 		navegar(39);
 	}
 }
+
 function f_esc(){
 	f				= document.form1;
 	f.esc.disabled 	= true;

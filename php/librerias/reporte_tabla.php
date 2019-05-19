@@ -203,7 +203,7 @@ class reporte_tabla{
 		and		rt.cod_tabla 			=	$cod_tabla
 		$condicion_reporte
 		order by rt.txt_nombre	desc";
-
+		
 		$row		= $db->consultar_registro($query);
 		return  $row['txt_script'];
 	}	

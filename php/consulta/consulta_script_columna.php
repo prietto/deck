@@ -36,7 +36,6 @@ if((isset($_GET['term']) && strlen($_GET['term']) > 0) || (isset($_GET['id']) &&
 		}
 		
 		$query = str_replace('condiciones_script_consulta',$condicion,$txt_script);
-		
 		$cursor = $db->consultar($query);
 		
 		$num_registros = $db->num_registros($cursor);
