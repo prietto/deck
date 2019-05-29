@@ -11,7 +11,7 @@ $(function(){
 
 	$('input[name="val_pagado"]').after(html).show(function(){
 		var btn_pagar 		= $('#btn_pagar');
-		var val_total 		= $('input[name="val_real"]');
+		var val_total 		= $('input[name="val_total"]');
 		var input_pagado	= $(this);
 
 		// FUNCION AL DAR CLICK SOBRE EL BOTON DE TOTALIZAR
@@ -175,7 +175,7 @@ $(function(){
 	$('#form1').submit(function(){
 
 		// captura el estado del pedido antes de guardar
-		var cod_estado = $('#cod_estado_pedido_compra').val();
+		var cod_estado = $('#cod_estado_pedido').val();
 
 		// si el pedido esta en 'REGISTRADO'
 		if(cod_estado == 1){
@@ -424,7 +424,7 @@ $(function(){
 			var obj_cantidad		= $('#cantidad_'+pos_tr);  // input de cantidad por fila
 			var value_cantidad		= obj_cantidad.val();   // valor del input cantidad
 			var obj_val_total_fila	= $('#val_total_'+pos_tr);	// input de valor total de la fila  
-			var value_val_real	 = $('input[name="val_real"]').val(); // captura el valor que tiene el valor final del pedido
+			var value_val_real	 = $('input[name="val_total"]').val(); // captura el valor que tiene el valor final del pedido
 			
 			
 			// recorreo los productos ingresados para saber si ya se ingreso
@@ -592,7 +592,7 @@ $(function(){
 				var num_cantidad_db = parseInt(data);
 
 				
-				if(value_cantidad > num_cantidad_db && name_this_obj == 'cantidad[]'){
+				if(value_cantidad > num_cantidad_db && name_this_obj == 'cantidad[]' && false){
 					var msj = "La cantidad ingresada es mayor a la existente en bodega";
 					$.ventana_proceso({
 						data 		: msj	,
@@ -600,8 +600,6 @@ $(function(){
 						
 					});
 					
-					
-//					alert('La cantidad ingresada es mayor a la existente en bodega');
 					$(obj_val_total_fila).val('0');
 					$('#'+id_this_obj).val('');
 					$('input[name="cantidad[]"]').keyup();		
@@ -646,7 +644,7 @@ $(function(){
 		if(total == 0)total = '';
 		total = formato_numero(total); // funcion que formatea el valor para poner coma de miles
 
-		$('input[name="val_real"]').val(total);	// asigna el valor total sumado de las filas del detalle
+		$('input[name="val_total"]').val(total);	// asigna el valor total sumado de las filas del detalle
 		$('input[name="val_pagado"]').keyup();
 
 
@@ -669,7 +667,7 @@ $(function(){
 		//if(value == '' || value == null)return false;
 		
 		value			= replaceAll(value,',',''); // reemplaza todas las comas que encuentre
-		var value_final		= $('input[name="val_real"]').val();
+		var value_final		= $('input[name="val_total"]').val();
 		var val_pagado	= $('input[name="val_pagado"]').val();
 		var	input_val_saldo = $('input[name="val_saldo"]');
 		
@@ -708,11 +706,11 @@ $(function(){
 	// =====================================================================================
 	// === FUNCION PARA RETORNAR EL ESTADO DEL PEDIDO Y QUITAR EL BOTON GUARDAR
 	// =====================================================================================
-	var estado_pedido 	= $('#cod_estado_pedido_compra').val();
+	var estado_pedido 	= $('#cod_estado_pedido').val();
 	var value_txt		= $('#cod_estado_pedido_compra option:selected').text();
 
 	
-	if(estado_pedido != 1){ // si el estado es anulado
+	if(estado_pedido != 1){ // si el estado es diferente a "Registrado"
 		$('#enter').remove();
 		
 		var msj = "El pedido se encuentra "+value_txt+", no es posible guardar cambios";
@@ -759,81 +757,6 @@ $(function(){
 
 
 
-
-/*=====2009/01/08========================================================>>>>
-DESCRIPCION: 	Metodo para hacer sonar un archivo mp3
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-===========================================================================*/
-ind_stop_mp3		= 	0;
-id_boton_anterior	=	null;
-function f_escuchar_mp3(txt_ruta_mp3, boton_id){
-	f							= document.form1;
-	boton_sonido				= document.getElementById(boton_id);
-	if(boton_id != id_boton_anterior && id_boton_anterior!=null){
-		document.getElementById(id_boton_anterior).src = '../../imagenes/sistema/stop_sound.png';
-		ind_stop_mp3									= 0;
-	}
-	if(ind_stop_mp3==1){
-		txt_ruta_mp3 			= "";
-		ind_stop_mp3			= 0;
-		boton_sonido.src		= '../../imagenes/sistema/stop_sound.png';
-	}else{
-		boton_sonido.src		= '../../imagenes/sistema/sound.png';
-		ind_stop_mp3	= 1;
-	}
-
-	f.txt_ruta_mp3.value	= txt_ruta_mp3;
-	f.target				= 'frame_oculto';
-	navegar(77);
-	f.target				= '_self';
-	id_boton_anterior 		= boton_id;
-	//boton_sonido.style.display 	= 'none';
-	
-//	boton_stop			= document.getElementById("ocultar_boton_mp3");
-//	boton_stop.style.display 	= 'block';	
-}
-
-/*=====2009/01/08========================================================>>>>
-DESCRIPCION: 	Metodo para eliminar una foto del sistema
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-===========================================================================*/
-function f_eliminar_foto(){	
-	
-	confirmacion = confirm("Esta foto se eliminara del sistema ¿Desea Continuar?");
-	
-	if(confirmacion==true)		navegar(76);
-			
-}
-/*=====2009/01/08========================================================>>>>
-DESCRIPCION: 	Metodo para ocultar la foto
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-===========================================================================*/
-function f_ocultar_foto(ruta){
-	fila					=	document.getElementById('ver_foto');
-	fila.style.display 		= 	'none';
-}
-
-/*=====2009/01/08========================================================>>>>
-DESCRIPCION: 	Metodo para mostrar una foto especifica
-AUTOR:			
----------------------------------------------------------------------------					
-PARAMETRO		DESCRIPCION 
-===========================================================================*/
-function ver_foto(ruta,nom_columna_con_foto){
-	f						=	document.form1;
-	imagen					= 	document.getElementById("img_registro");
-	imagen.src				=	ruta;
-	fila					=	document.getElementById('ver_foto');
-	fila.style.display 		= 	'block';
-	document.form1.eliminar_foto.focus();
-	f.nom_columna_con_foto.value=	nom_columna_con_foto;
-}
 
 /*=====2010/06/02========================================================>>>>
 DESCRIPCION: 	Si la ultima fila esta limpia la borra para no tener que hacer

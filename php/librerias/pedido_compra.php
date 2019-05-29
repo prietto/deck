@@ -101,7 +101,7 @@ if(class_exists('pedido_compra') != true){
 
 				// ACTUALIZA EL ESTADO DEL PEDIDO
 				$query = "update pedido_compra 
-							set cod_estado_pedido_compra = 3 
+							set cod_estado_pedido = 3 
 							where cod_pedido_compra = ".$cod_pedido_compra;
 				$db->consultar($query);
 
@@ -158,8 +158,8 @@ if(class_exists('pedido_compra') != true){
 			if(!$cod_pedido_compra || !$cod_estado_pedido)return false;
 			global $db;
 			
-			$query = "update 	pedido_compra set cod_estado_pedido_compra = ".$cod_estado_pedido."
-						where 	cod_estado_pedido_compra not in (3) 
+			$query = "update 	pedido_compra set cod_estado_pedido = ".$cod_estado_pedido."
+						where 	cod_estado_pedido not in (3) 
 						and 	cod_pedido_compra = ".$cod_pedido_compra; 
 
 			

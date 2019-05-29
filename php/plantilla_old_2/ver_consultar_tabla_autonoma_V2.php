@@ -311,7 +311,7 @@ for($i=0; $i<$num_registros; $i++){
   
       <tr>
         <td align="center"  valign="bottom"  class="td_footer"  >
-        <div>Sistema de informacion  | Todos los derechos reservados © 2019</div>| Todos los derechos reservados © 2018</div>
+        <div>Sistema de informacion  | Todos los derechos reservados © 2019</div>
             
          </td>
       </tr>

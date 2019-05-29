@@ -84,7 +84,7 @@ $tabla_imputs_detalle	=	$columna_tabla_autonoma->f_dar_formato_imputs_tabla_deta
 $row_js_personalizado	= $tabla_autonoma_personalizado->f_get_row($cod_tabla_detalle,$cod_navegacion);
 if($row_js_personalizado['txt_js'])		$js_navegacion 	= "<script src='../../js/".$row_js_personalizado['txt_js']."'></script>";
 else									$js_navegacion 	= "<script src='../../js/ver_default_script_maestro_detalle.js'></script>";
-if($row_js_personalizado['txt_js_adicional'])		$js_extra	= "<script src='../../js/".$row_js_personalizado['txt_js_adicional']."'></script>";
+if($row_js_personalizado['txt_js_adicional'])		$js_extra	= "../../js/".$row_js_personalizado['txt_js_adicional'];
 
 if($js_extra != NULL)$js_extra = "<script src='".$js_extra."'></script>";
 ?>

@@ -379,7 +379,7 @@ function  f_actualizar_campos(combo){
   
       <tr>
         <td align="center"  valign="bottom"  class="td_footer"  >
-        	<div>Sistema de informacion  | Todos los derechos reservados © 2019</div> |<div>Sistema de informacion  | Todos los derechos reservados © 2019</div>|<div>Sistema de informacion  | Todos los derechos reservados © 2019</div> |<div>Sistema de informacion  | Todos los derechos reservados © 2019</div>
+        	<div>Sistema de informacion  | Todos los derechos reservados © 2019</div>
             
          </td>
       </tr>

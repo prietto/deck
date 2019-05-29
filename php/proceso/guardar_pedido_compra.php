@@ -36,7 +36,7 @@ $entrada_insumo 				= 	new entrada_insumo();
 
 
 $row_pedido 			= $pedido_compra->f_get_row($cod_pk);
-$cod_estado_pedido_db	= $row_pedido['cod_estado_pedido_compra'];
+$cod_estado_pedido_db	= $row_pedido['cod_estado_pedido'];
 
 
 // debe averiguar si el pedido compra ha sido solamente registrado

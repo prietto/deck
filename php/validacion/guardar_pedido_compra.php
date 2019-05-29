@@ -94,7 +94,7 @@ if(!$row_usuario){
 
 // debe validar si el pedido es de contado y de serlo 
 if($cod_forma_pago == 1){
-	if((!$val_pagado || $val_pagado == 0) || $val_pagado != $val_real){
+	if((!$val_pagado || $val_pagado == 0)){
 		array_push($arr_mensajes,'42'); 	//registra el codigo del mensaje que se debe mostrar
 		array_push($arr_parametro,'El pedido es de contado, el valor pagado debe ser igual al valor total'); 	
 		if(!$ind_navegacion_ajax){
@@ -111,9 +111,9 @@ if($cod_forma_pago == 1){
 
 
 // debe validar que haya ingresado productos
-if(count($cod_insumo) == 0){
+if(count($cod_producto) == 0){
 	array_push($arr_mensajes,'42'); 	//registra el codigo del mensaje que se debe mostrar
-	array_push($arr_parametro,'Debe ingresar al menos un insumo'); 	
+	array_push($arr_parametro,'Debe ingresar al menos un producto'); 	
 	if(!$ind_navegacion_ajax){
 			$proceso				= NULL;		//no procesa nada
 			$consulta				= "ver_registrar_maestro_detalle_autonomo.php";	//Regresa a  la pagina anterior

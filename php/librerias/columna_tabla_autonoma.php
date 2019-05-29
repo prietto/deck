@@ -24,13 +24,13 @@ class columna_tabla_autonoma{
 		$i = 0;
 		$lenght = 0;
 		$html = "<div>";
-		$arr_inputs = array_reverse($arr_inputs);
+		//$arr_inputs = array_reverse($arr_inputs);
 		foreach($arr_inputs as $clave => $valor){
 			$lenght++;
 			
 
 			
-			if($valor['indPk'] == 1){
+			if($valor['indPk'] == 1 || $valor['ind_pk'] == 1){
 				$html .= $valor["input"];
 			}else{
 				$i++;
@@ -1523,7 +1523,9 @@ class columna_tabla_autonoma{
 		from 		columna_tabla_autonoma
 		where		cod_tabla			= $cod_tabla
 		and			ind_visible_form = 1
-		order by 	num_orden_insert desc";
+		order by 	num_orden_insert asc";
+
+		
 
 		$cursor_columnas		= $db->consultar($query);
 		$num_registros 			= $db->num_registros($cursor_columnas);
@@ -3552,9 +3554,11 @@ class columna_tabla_autonoma{
 			  	$query		= $row_info_columna['txt_script_lista_valor'];
 				$query		= str_replace("value_columna",$value,$query);
 				// solo si existe valor
+				
 				if($value)$row_nmbre = $db->consultar_registro($query);
-
+				
 				$info_nmbre	= $row_nmbre['txt_nombre']; 
+				
 				//== Remplaza el campo de nombre >>>				
 				$row_imputs[$txt_nombre_columna]['input']=
 				str_replace("txt_value_columna",$info_nmbre,$row_imputs[$txt_nombre_columna]['input']);
@@ -4838,6 +4842,7 @@ class columna_tabla_autonoma{
 			}else{
 				$arr_update		= implode(",",$arr_update);
 				$query			= "update $nom_tabla_detalle set $arr_update where $nom_pk_detalle=$val_pk_detalle";
+				
 				$db->consultar($query);				
 				if($cod_tipo_dato_columna==13  || $cod_tipo_dato_columna==9 ){
 					$nom_url_mp3			=	$this->p_guardar_archivo_maestro_detalle(
@@ -4854,12 +4859,14 @@ class columna_tabla_autonoma{
 				}
 			}
 			array_push($arr_query,$query);
+
 		}		
 		//=== Borra los registros que no estan en la forma >>>
 		$codigos_bloqueados	= implode(",",$arr_pk_detalle);
 		$query				= "delete from 	$nom_tabla_detalle 
 								where $nom_pk_detalle not in($codigos_bloqueados) 
 								and   $nom_pk_maestro = $cod_pk_maestro";
+
 		$db->consultar($query);
 		//=== Ejecuta una por una las consultas de insert y update para no bloquear el sistema >>>
 /*		$num_consultas = count($arr_query);
