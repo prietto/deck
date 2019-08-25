@@ -613,15 +613,12 @@ class pedido{
 		// consulta si dentro del rango seleccionado hay pedidos ya pagados
 		// de ser verdadero manda codigo de error y frena el proceso
 		$query="select count(*) as num_registros from pedido where cod_estado_pedido = 2 and cod_pedido in ($string_pedidos)";
-		$row = $db->consultar($query);
-		
+		$row = $db->consultar_registro($query);
 		if($row['num_registros'] > 0){
 			echo $error_1;
 			return $error_1;  // devuelve codigo de error 1
 		}
-		
-		
-		
+
 		//$query = "select * from pedido_detalle where cod_pedido in ($string_pedidos) order by cod_producto asc";	
 		$query = "	select  pd.cod_producto , 
 			        		sum(cantidad) as total_cantidad 

@@ -117,6 +117,7 @@ class producto{
 		}
 		
 		
+		
 		for($i=0;$i<count($arr_pedido_detalle);$i++){ 
 			$cod_pedido_detalle 	= $arr_pedido_detalle[$i];
 			$cod_pedido_detalle_db	= $arr_pedido_detalle_db[$i];

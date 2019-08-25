@@ -129,11 +129,6 @@ $(function(){
 	
 	$('#form1').submit(function(e){
 		e.preventDefault();
-		console.log('holaaa');
-
-		
-
-
 		if($('#ind_funcion_facturar').is(':checked')) {  
 			// flujo de navegacion que genera codigo de factura para el pedido automaticamente
 			navegar_ajax_autonomo(1056,this);
